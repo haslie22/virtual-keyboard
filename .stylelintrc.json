@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-airbnb",
+  "overrides": [
+    {
+      "files": ["*.scss"],
+      "customSyntax": "stylelint-config-standard-scss"
+    }
+  ]
+}

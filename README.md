@@ -4,25 +4,39 @@
 
 ---
 
-**Минимальный набор**
-- [ ] реализована генерация DOM-элементов и `body` в index.html пустой изначально (может находится только тег `script`): `20/20`
-- [ ] нажатие на кнопку на физической клавиатуре подсвечивает кнопку на виртуальной (проверять следует нажатие цифр, букв, знаков препинания, `backspace`, `del` (если она присутствует), `enter`, `shift`, `alt`, `ctrl`, `tab`, `caps lock`, `space`, стрелки вниз-вверх-влево-вправо): `10/10`
+**Minimal scope**
+- [ ] the generation of DOM elements is implemented. `body` in the `index.html` is empty (can contain only `script` tag): `20/20`
+- [ ] pressing a key on a physical keyboard highlights the key on the virtual keyboard (you should check keystrokes of numbers, letters, punctuation marks, `backspace`, `del` (if it's present), `enter`, `shift`, `alt`, `ctrl`, `tab`, `caps lock`, `space`, arrow keys): `10/10`
 
-**Стандартный набор**
-- [ ] есть переключение между русским и английским языком (сочетание клавиш для переключения языка должно быть указано на странице с клавиатурой), а также сохранение выбранного языка: `15/15`
-- [ ] клики мышкой по кнопкам на виртуальной клавиатуре или нажатие на кнопки физической клавиатуры, выводят символы в инпут (textarea): `15/15`
+**Basic scope**
+- [ ] switching keyboard layouts between English and another language is implemented. Selected language should be saved and used on page reload. A keyboard shortcut for switching a language should be specified on the page: `15/15`
+- [ ] mouse clicks on buttons of the virtual keyboard or pressing buttons on a physical keyboard inputs characters to the input field (text area): `15/15`
 
-**Дополнительный набор**
-- [ ] реализована анимация нажатия на кнопку: `15/15`
+**Extra scope**
+- [ ] animation of pressing a key is implemented: `15/15`
 
-**Технические требования**
-- [ ] использование в коде фишек стандарта ES6 и выше (classes, деструктуризация и т.д.): `15/15`
-- [ ] использование eslint: `10/10`
-- [ ] требования к репозиторию, коммитам и PR выполнены: `10/10`
-  - [ ] название PR должно содержать название задания
-  - [ ] описание PR должно соответствовать [требованиям]() (TBD)
-  - [ ] PR не должен содержать закомментированного кода, ненужных файлов, изменений из других веток и сгенерированных файлов, например `.bundle.js`. Файлы `.editorconfig`, `.gitignore` и т.д. могут быть включены в PR
-  - [ ] Комментарии в PR являются хорошей практикой
+**Technical requirements**
+- [ ] usage of ES6+ features (classes, property destructuring, etc): `15/15`
+- [ ] usage of ESLint: `10/10`
+- [ ] requirements to the repository, commits and pull request are met: `10/10`
+  - [ ] the work should be done in your private repository
+  - [ ] the repository name matches the task name (`virtual-keyboard`)
+  - [ ] source code should be committed to a separate branch
+  - [ ] the `main` branch should be empty (contain only files like README.md or .gitignore)
+  - [ ] commit messages should follow the [guideline](https://www.conventionalcommits.org/en)
+  - [ ] once the work is finished, create a pull request from a `development` branch to `main`
+  - [ ] the pull request name should contain **the task name**
+  - [ ] the pull request description should contain the following information:
+    - [ ] link to the task
+    - [ ] screenshot of your application (one would be enough)
+    - [ ] link to your application
+    - [ ] date of completion/deadline
+    - [ ] your self-check with a preliminary evaluation that is based on the evaluation criteria from the task
 
-**Штрафы**
-- [ ] ошибки в консоли, связанные с исполняемым кодом (ошибки типа `favicon.ico: Failed to load resource: the server responded with a status of 404` не учитываются) или предупреждения eslint-config-airbnb-base: `-15/15`
+**Penalties**
+- [ ] there're errors related to the executable code (errors like `favicon.ico: Failed to load resource: the server responded with a status of 404` are not taken into account) or there're eslint-config-airbnb-base warnings: `-15/15`
+
+**Penalties are imposed only by the course administration**
+- [ ] the repository (`virtual-keyboard`) or development branch (`development`) name does not comply with the requirements: `-110`
+- [ ] less than 5 commits are made or commits are made on the same day: `-110 or expel from the course`
+- [ ] a significant portion of the application was completed after the deadline: `-110 or expel from the course`
