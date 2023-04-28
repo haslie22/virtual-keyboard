@@ -1,0 +1,114 @@
+$key-font-colors: (
+  "bright": #F4E9DE,
+  "dark": #5B5964,
+);
+
+$key-font: (
+  "font-size": 2.4em,
+  "font-family": ('Swiss 721 Rounded', sans-serif),
+  "font-style": bold,
+  "font-weight": 700,
+);
+
+/* TODO: set apart pereating css rules (how?)
+$key-shadows: (
+  "face-box-shadow-left": rgba(0 0 0 / 15%),
+  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
+  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+);
+*/
+
+$key-default: (
+  "face-gradient-light": #D2C3B2,
+  "face-gradient-dark": #786D63,
+  "face-box-shadow-left": rgba(0 0 0 / 15%),
+  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
+  "face-box-shadow-border": #665E57,
+  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+);
+
+$key-default-pseudo: (
+  "top-gradient-light": #F8ECE2,
+  "top-gradient-dark": #CCBFB3,
+  "top-box-shadow-left": rgba(255 255 255 / 15%),
+  "top-box-shadow-overall": rgba(0 0 0 / 15%),
+  "top-border-left": #8D8175,
+  "top-border-bottom": #8D8175,
+  "top-border-top": #867B6F,
+);
+
+$key-default-dark: (
+  "face-gradient-light": #B49575,
+  "face-gradient-dark": #654C2D,
+  "face-box-shadow-left": rgba(0 0 0 / 15%),
+  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
+  "face-box-shadow-border": #523E26,
+  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+);
+
+$key-default-dark-pseudo: (
+  "top-gradient-light": #D6B89C,
+  "top-gradient-dark": #AF9377,
+  "top-box-shadow-left": rgba(255 255 255 / 15%),
+  "top-box-shadow-overall": rgba(0 0 0 / 15%),
+  "top-border-left": #997F66,
+  "top-border-bottom": #997F66,
+  "top-border-top": #8B735C,
+);
+
+$key-accent-mustard: (
+  "face-gradient-light": #DF933C,
+  "face-gradient-dark": #7C4D16,
+  "face-box-shadow-left": rgba(0 0 0 / 15%),
+  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
+  "face-box-shadow-border": #633F15,
+  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+);
+
+$key-accent-mustard-pseudo: (
+  "top-gradient-light": #F3AE49,
+  "top-gradient-dark": #DC903A,
+  "top-box-shadow-left": rgba(255 255 255 / 15%),
+  "top-box-shadow-overall": rgba(0 0 0 / 15%),
+  "top-border-left": #B7752B,
+  "top-border-bottom": #B7752B,
+  "top-border-top": #A76B27,
+);
+
+$key-accent-corall: (
+  "face-gradient-light": #BB3321,
+  "face-gradient-dark": #5C0603,
+  "face-box-shadow-left": rgba(0 0 0 / 15%),
+  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
+  "face-box-shadow-border": #480705,
+  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+);
+
+$key-accent-corall-pseudo: (
+  "top-gradient-light": #F77467,
+  "top-gradient-dark": #CE4C39,
+  "top-box-shadow-left": rgba(255 255 255 / 15%),
+  "top-box-shadow-overall": rgba(0 0 0 / 15%),
+  "top-border-left": #AC3B2B,
+  "top-border-bottom": #AC3B2B,
+  "top-border-top": #A03628,
+);
+
+$key-accent-aquamarine: (
+  "face-gradient-light": #2F7476,
+  "face-gradient-dark": #003742,
+  "face-box-shadow-left": rgba(0 0 0 / 15%),
+  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
+  "face-box-shadow-border": #03313A,
+  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+);
+
+$key-accent-aquamarine-pseudo: (
+  "top-gradient-light": #5CC8D2,
+  "top-gradient-dark": #33929A,
+  "top-box-shadow-left": rgba(255 255 255 / 15%),
+  "top-box-shadow-overall": rgba(0 0 0 / 15%),
+  "top-border-left": #2B7D84,
+  "top-border-bottom": #2B7D84,
+  "top-border-top": #29747B,
+);

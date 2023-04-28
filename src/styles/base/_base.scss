@@ -3,8 +3,14 @@
 @import "../abstracts/variables";
 @import "../abstracts/mixins";
 
+// TODO: remove before release
+#webpack-dev-server-client-overlay {
+  display: none;
+}
+
 html {
   box-sizing: border-box;
+  font-size: 10px;
 }
 
 *,
@@ -13,4 +19,11 @@ html {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

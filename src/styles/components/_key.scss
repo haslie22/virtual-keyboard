@@ -1,0 +1,76 @@
+@use "sass:map";
+
+.key {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    bottom: 14px;
+    right: 12px;
+    border-radius: 10px;
+  }
+
+  & span {
+    @include font($key-font...);
+    position: relative;
+    margin-bottom: 14px;
+    margin-right: 8px;
+  }
+
+  &.key_default {
+    @include key-colors($key-default...);
+    color: map.get($key-font-colors, "dark");
+
+    &::before {
+      @include key-colors-before($key-default-pseudo...);
+    }
+  }
+
+  &.key_default-dark {
+    @include key-colors($key-default-dark...);
+    color: map.get($key-font-colors, "dark");
+
+    &::before {
+      @include key-colors-before($key-default-dark-pseudo...);
+    }
+  }
+
+  &.key_accent-mustard {
+    @include key-colors($key-accent-mustard...);
+    color: map.get($key-font-colors, "bright");
+
+    &::before {
+      @include key-colors-before($key-accent-mustard-pseudo...);
+    }
+  }
+
+  &.key_accent-corall {
+    @include key-colors($key-accent-corall...);
+    color: map.get($key-font-colors, "bright");
+
+    &::before {
+      @include key-colors-before($key-accent-corall-pseudo...);
+    }
+  }
+
+  &.key_accent-aquamarine {
+    @include key-colors($key-accent-aquamarine...);
+    color: map.get($key-font-colors, "bright");
+
+    &::before {
+      @include key-colors-before($key-accent-aquamarine-pseudo...);
+    }
+  }
+}
+
+// TODO: specify styles for buttons with 1/2 symbols and of certain width
