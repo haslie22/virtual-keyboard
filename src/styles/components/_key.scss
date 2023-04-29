@@ -9,6 +9,7 @@
   height: 80px;
   border-radius: 10px;
   overflow: hidden;
+  user-select: none;
 
   &::before {
     content: '';

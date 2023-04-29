@@ -1,4 +1,4 @@
-const keyConfig = {
+const keysConfig = {
   Backquote: {
     input: true,
     en: '`',
@@ -442,4 +442,6 @@ const keyConfig = {
   },
 };
 
-export default keyConfig;
+const keysMap = new Map(Object.entries(keysConfig));
+
+export default keysMap;
