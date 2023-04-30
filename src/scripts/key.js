@@ -1,11 +1,12 @@
 import { createElement } from './helpers';
 
 class Key {
-  constructor(container, keyData, keyClasses, handler) {
+  constructor(container, keyData, keyClasses, language, audio) {
     this.container = container;
     this.keyData = keyData;
     this.keyClasses = keyClasses;
-    this.handler = handler;
+    this.language = language;
+    this.audio = audio;
 
     this.key = null;
 
@@ -30,6 +31,7 @@ class Key {
   addListeners() {
     this.key.addEventListener('mousedown', () => {
       this.key.classList.add('active');
+      this.playAudio();
       this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);
     });
 
@@ -41,10 +43,12 @@ class Key {
       this.key.classList.remove('active');
     });
 
-    this.key.addEventListener('keyPressed', () => {
-      this.key.classList.add('active');
-      this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);
-    });
+    // this.key.addEventListener('keyPressed', () => {
+    //   console.log('pressed');
+    //   this.key.classList.add('active');
+    //   this.playAudio();
+    //   this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);
+    // });
   }
 
   triggerClickEvent(key, keyCode) {
@@ -56,6 +60,11 @@ class Key {
       },
     });
     this.key.dispatchEvent(clickEvent);
+  }
+
+  playAudio() {
+    this.audio.currentTime = 0;
+    this.audio.play();
   }
 }
 

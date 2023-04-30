@@ -87,6 +87,13 @@ module.exports = {
           filename: 'assets/img/[name][ext]',
         },
       },
+      {
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/sounds/[name][ext]',
+        },
+      },
     ],
   },
 };

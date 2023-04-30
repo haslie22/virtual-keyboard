@@ -10,4 +10,18 @@ import Keyboard from './scripts/keyboard';
 import Output from './scripts/output';
 import App from './scripts/app';
 
-const app = new App(document.body, keysMap, keyStyleConfig, 'en', Keyboard, Output, Key, Heading);
+import { getLocalStorage } from './scripts/helpers';
+
+const DEFAULT_LANGUAGE = 'en';
+const language = getLocalStorage('LANGUAGE') || DEFAULT_LANGUAGE;
+
+const app = new App(
+  document.body,
+  keysMap,
+  keyStyleConfig,
+  language,
+  Keyboard,
+  Output,
+  Key,
+  Heading,
+);

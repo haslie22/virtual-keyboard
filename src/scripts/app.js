@@ -1,6 +1,6 @@
 import { APP_NAME } from './data/text-default';
 
-import { createElement } from './helpers';
+import { createElement, setLocalStorage } from './helpers';
 
 class App {
   #title;
@@ -28,6 +28,7 @@ class App {
   }
 
   addListeners() {
+    document.addEventListener('beforeunload', () => setLocalStorage(this.language));
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
       this.triggerPressEvent(event);
@@ -51,10 +52,16 @@ class App {
       const activeKey = this.#keyboard.keys.find(
         (key) => key.keyData.code === event.detail.keyCode,
       );
-      this.currentKeys.push(activeKey);
+
+      if (activeKey) {
+        this.currentKeys.push(activeKey);
+      }
 
       if (this.currentKeys.length) {
-        this.currentKeys.forEach((pressedKey) => pressedKey.key.classList.add('active'));
+        this.currentKeys.forEach((pressedKey) => {
+          pressedKey.playAudio();
+          pressedKey.key.classList.add('active');
+        });
         this.update(event.detail.keyCode, event.detail.key);
       }
     });
