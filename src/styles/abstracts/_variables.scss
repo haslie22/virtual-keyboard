@@ -3,25 +3,30 @@ $key-font-colors: (
   "dark": #5B5964,
 );
 
-$key-font: (
-  "font-size": 2.4em,
-  "font-family": ('Swiss 721 Rounded', sans-serif),
-  "font-style": bold,
-  "font-weight": 700,
+$heading-font: (
+  "font-size": 3.6em,
+  "font-family": ('Roboto Mono', sans-serif),
+  "font-style": normal,
+  "font-weight": 600,
 );
 
-/* TODO: set apart pereating css rules (how?)
-$key-shadows: (
-  "face-box-shadow-left": rgba(0 0 0 / 15%),
-  "face-box-shadow-bottom": rgba(0 0 0 / 25%),
-  "face-box-shadow-overlay": rgba(0 0 0 / 40%),
+$key-font: (
+  "font-size": 1.6em,
+  "font-family": ('Nunito', sans-serif),
+  "font-style": normal,
+  "font-weight": 500,
 );
-*/
+
+$output-font: (
+  "font-size": 1.6em,
+  "font-family": ('Roboto Mono', sans-serif),
+  "font-style": normal,
+  "font-weight": 400,
+);
 
 $key-default: (
   "face-gradient-light": #D2C3B2,
   "face-gradient-dark": #786D63,
-  "face-box-shadow-left": rgba(0 0 0 / 15%),
   "face-box-shadow-bottom": rgba(0 0 0 / 25%),
   "face-box-shadow-border": #665E57,
   "face-box-shadow-overlay": rgba(0 0 0 / 40%),
@@ -40,7 +45,6 @@ $key-default-pseudo: (
 $key-default-dark: (
   "face-gradient-light": #B49575,
   "face-gradient-dark": #654C2D,
-  "face-box-shadow-left": rgba(0 0 0 / 15%),
   "face-box-shadow-bottom": rgba(0 0 0 / 25%),
   "face-box-shadow-border": #523E26,
   "face-box-shadow-overlay": rgba(0 0 0 / 40%),
@@ -59,7 +63,6 @@ $key-default-dark-pseudo: (
 $key-accent-mustard: (
   "face-gradient-light": #DF933C,
   "face-gradient-dark": #7C4D16,
-  "face-box-shadow-left": rgba(0 0 0 / 15%),
   "face-box-shadow-bottom": rgba(0 0 0 / 25%),
   "face-box-shadow-border": #633F15,
   "face-box-shadow-overlay": rgba(0 0 0 / 40%),
@@ -78,7 +81,6 @@ $key-accent-mustard-pseudo: (
 $key-accent-corall: (
   "face-gradient-light": #BB3321,
   "face-gradient-dark": #5C0603,
-  "face-box-shadow-left": rgba(0 0 0 / 15%),
   "face-box-shadow-bottom": rgba(0 0 0 / 25%),
   "face-box-shadow-border": #480705,
   "face-box-shadow-overlay": rgba(0 0 0 / 40%),
@@ -97,7 +99,6 @@ $key-accent-corall-pseudo: (
 $key-accent-aquamarine: (
   "face-gradient-light": #2F7476,
   "face-gradient-dark": #003742,
-  "face-box-shadow-left": rgba(0 0 0 / 15%),
   "face-box-shadow-bottom": rgba(0 0 0 / 25%),
   "face-box-shadow-border": #03313A,
   "face-box-shadow-overlay": rgba(0 0 0 / 40%),

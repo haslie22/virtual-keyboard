@@ -80,6 +80,13 @@ module.exports = {
           filename: 'assets/fonts/[name][ext]',
         },
       },
+      {
+        test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/img/[name][ext]',
+        },
+      },
     ],
   },
 };

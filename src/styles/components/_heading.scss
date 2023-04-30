@@ -1,0 +1,31 @@
+@use "sass:map";
+
+.heading {
+  @include font($heading-font...);
+  color: map.get($key-font-colors, "bright");
+
+  & .heading__char:nth-of-type(5),
+  & .heading__char:nth-of-type(6),
+  & .heading__char:nth-of-type(7),
+  & .heading__char:nth-of-type(8),
+  & .heading__char:nth-of-type(9),
+  & .heading__char:nth-of-type(10),
+  & .heading__char:nth-of-type(11) {
+    color: map.get($key-accent-mustard-pseudo, "top-gradient-light");
+  }
+
+  & .heading__char:nth-of-type(14) {
+    color: map.get($key-accent-corall-pseudo, "top-gradient-light");
+  }
+
+  & .heading__char:nth-of-type(16),
+  & .heading__char:nth-of-type(17),
+  & .heading__char:nth-of-type(18),
+  & .heading__char:nth-of-type(19) {
+    color: map.get($key-accent-aquamarine-pseudo, "top-gradient-light");
+  }
+}
+
+.app__heading {
+  margin-bottom: 40px;
+}

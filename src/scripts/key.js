@@ -1,16 +1,17 @@
 import createElement from './helpers';
 
 class Key {
-  constructor(container, keyData, handler) {
+  constructor(container, keyData, keyClasses, handler) {
     this.container = container;
     this.keyData = keyData;
+    this.keyClasses = keyClasses;
     this.handler = handler;
 
     this.render();
   }
 
   render() {
-    const key = createElement('div', 'key', 'key_default');
+    const key = createElement('div', 'key', ...this.keyClasses);
     const keyChar = createElement('span', 'key__char');
     keyChar.textContent = this.keyData.en;
 
@@ -18,7 +19,5 @@ class Key {
     this.container.append(key);
   }
 }
-
-// TODO: create classMap for all types of buttons to use in createElement
 
 export default Key;

@@ -188,12 +188,19 @@ const keysConfig = {
     ru: 'ъ',
     ruCaps: 'Ъ',
   },
+  IntlBackslash: {
+    input: true,
+    en: '\\',
+    enCaps: '|',
+    ru: 'ё',
+    ruCaps: 'Ё',
+  },
   Delete: {
     input: false,
-    en: 'Delete',
-    enCaps: 'Delete',
-    ru: 'Delete',
-    ruCaps: 'Delete',
+    en: 'Del',
+    enCaps: 'Del',
+    ru: 'Del',
+    ruCaps: 'Del',
   },
   CapsLock: {
     input: false,
@@ -293,13 +300,6 @@ const keysConfig = {
     ru: 'Shift',
     ruCaps: 'Shift',
   },
-  IntlBackslash: {
-    input: true,
-    en: '\\',
-    enCaps: '|',
-    ru: 'ё',
-    ruCaps: 'Ё',
-  },
   keyZ: {
     input: true,
     en: 'z',
@@ -391,19 +391,19 @@ const keysConfig = {
     ru: 'Ctrl',
     ruCaps: 'Ctrl',
   },
-  MetaLeft: {
-    input: false,
-    en: 'Win',
-    enCaps: 'Win',
-    ru: 'Win',
-    ruCaps: 'Win',
-  },
   AltLeft: {
     input: false,
     en: 'Alt',
     enCaps: 'Alt',
     ru: 'Alt',
     ruCaps: 'Alt',
+  },
+  MetaLeft: {
+    input: false,
+    en: 'Win',
+    enCaps: 'Win',
+    ru: 'Win',
+    ruCaps: 'Win',
   },
   Space: {
     input: true,
@@ -439,6 +439,13 @@ const keysConfig = {
     enCaps: 'arrowRight',
     ru: 'arrowRight',
     ruCaps: 'arrowRight',
+  },
+  ControlRight: {
+    input: false,
+    en: 'Ctrl',
+    enCaps: 'Ctrl',
+    ru: 'Ctrl',
+    ruCaps: 'Ctrl',
   },
 };
 

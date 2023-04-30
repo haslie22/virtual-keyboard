@@ -15,17 +15,15 @@
 @mixin key-colors(
   $face-gradient-light,
   $face-gradient-dark,
-  $face-box-shadow-left,
   $face-box-shadow-bottom,
   $face-box-shadow-border,
   $face-box-shadow-overlay
 ) {
   background: linear-gradient(180deg, $face-gradient-light, $face-gradient-dark);
   box-shadow: 
-    inset -8px 0 8px $face-box-shadow-left,
-    inset 0 -8px 8px $face-box-shadow-bottom,
+    0 4px 4px 0 $face-box-shadow-bottom,
     0 0 0 2px $face-box-shadow-border,
-    10px 20px 25px $face-box-shadow-overlay;
+    0 5px 25px 2px $face-box-shadow-overlay;
 }
 
 @mixin key-colors-before(
@@ -39,7 +37,7 @@
 ) {
   background: linear-gradient(90deg, $top-gradient-dark, $top-gradient-light);
   box-shadow:
-  -10px -10px 10px $top-box-shadow-left,
+  0 4px 4px $top-box-shadow-left,
   10px 5px 10px $top-box-shadow-overall;
   border-left: 1px solid $top-border-left;
   border-bottom: 1px solid $top-border-bottom;

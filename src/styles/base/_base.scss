@@ -21,9 +21,11 @@ html {
   padding: 0;
 }
 
-body {
-  height: 100vh;
+.app {
+  height: max(100vh, 800px);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(180deg, #5B5964 0%, #757185 100%);
 }
