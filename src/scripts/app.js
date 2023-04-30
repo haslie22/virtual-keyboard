@@ -22,7 +22,7 @@ class App {
     this.#ouput = new Output(this.app);
     this.#keyboard = new Keyboard(this.app, this.config, this.styleConfig, this.language, Key);
 
-    this.currentKey = null;
+    this.currentKeys = [];
 
     this.addListeners();
   }
@@ -34,9 +34,11 @@ class App {
     });
 
     document.addEventListener('keyup', () => {
-      if (this.currentKey) {
-        this.currentKey.key.classList.remove('active');
+      if (this.currentKeys.length) {
+        this.currentKeys.forEach((activeKey) => activeKey.key.classList.remove('active'));
       }
+
+      this.currentKeys = [];
     });
 
     this.app.addEventListener('keyClicked', (event) => {
@@ -46,12 +48,13 @@ class App {
     this.app.addEventListener('keyPressed', (event) => {
       event.preventDefault();
 
-      this.currentKey = this.#keyboard.keys.find(
+      const activeKey = this.#keyboard.keys.find(
         (key) => key.keyData.code === event.detail.keyCode,
       );
+      this.currentKeys.push(activeKey);
 
-      if (this.currentKey) {
-        this.currentKey.key.classList.add('active');
+      if (this.currentKeys.length) {
+        this.currentKeys.forEach((pressedKey) => pressedKey.key.classList.add('active'));
         this.update(event.detail.keyCode, event.detail.key);
       }
     });
