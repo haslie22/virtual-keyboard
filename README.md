@@ -5,25 +5,32 @@
 ---
 
 **Minimal scope**
-- [ ] the generation of DOM elements is implemented. `body` in the `index.html` is empty (can contain only `script` tag): `20/20`
-- [ ] pressing a key on a physical keyboard highlights the key on the virtual keyboard (you should check keystrokes of numbers, letters, punctuation marks, `backspace`, `del` (if it's present), `enter`, `shift`, `alt`, `ctrl`, `tab`, `caps lock`, `space`, arrow keys): `10/10`
+- [x] the generation of DOM elements is implemented. `body` in the `index.html` is empty (can contain only `script` tag): `20/20`
+- [x] pressing a key on a physical keyboard highlights the key on the virtual keyboard (you should check keystrokes of numbers, letters, punctuation marks, `backspace`, `del` (if it's present), `enter`, `shift`, `alt`, `ctrl`, `tab`, `caps lock`, `space`, arrow keys): `10/10`
 
 **Basic scope**
 - [ ] switching keyboard layouts between English and another language is implemented. Selected language should be saved and used on page reload. A keyboard shortcut for switching a language should be specified on the page: `15/15`
 - [ ] mouse clicks on buttons of the virtual keyboard or pressing buttons on a physical keyboard inputs characters to the input field (text area): `15/15`
+  - [ ] pressing the `Up`, `Down`, `Left` or `Right` arrow key inputs an arrow symbol in the input field, or implements navigation on the text area
+  - [ ] pressing the `Enter` should move a text cursor to the next line
+  - [ ] the `Tab` key creates a horizontal indent
+  - [ ] pressing the rest of the function keys on a keyboard does not result in inputting symbols
+  - [ ] the `Backspace` key removes character before the text cursor
+  - [ ] the `Del` key removes character after the text cursor
+  - [ ] the `Shift`, `Alt`, `Ctrl`, `Caps lock` and `Space` keys should work as on a real keyboard
 
 **Extra scope**
-- [ ] animation of pressing a key is implemented: `15/15`
+- [x] animation of pressing a key is implemented: `15/15`
 
 **Technical requirements**
-- [ ] usage of ES6+ features (classes, property destructuring, etc): `15/15`
-- [ ] usage of ESLint: `10/10`
+- [x] usage of ES6+ features (classes, property destructuring, etc): `15/15`
+- [x] usage of ESLint: `10/10`
 - [ ] requirements to the repository, commits and pull request are met: `10/10`
-  - [ ] the work should be done in your private repository
-  - [ ] the repository name matches the task name (`virtual-keyboard`)
-  - [ ] source code should be committed to a separate branch
-  - [ ] the `main` branch should be empty (contain only files like README.md or .gitignore)
-  - [ ] commit messages should follow the [guideline](https://www.conventionalcommits.org/en)
+  - [x] the work should be done in your private repository
+  - [x] the repository name matches the task name (`virtual-keyboard`)
+  - [x] source code should be committed to a separate branch
+  - [x] the `main` branch should be empty (contain only files like README.md or .gitignore)
+  - [x] commit messages should follow the [guideline](https://www.conventionalcommits.org/en)
   - [ ] once the work is finished, create a pull request from a `development` branch to `main`
   - [ ] the pull request name should contain **the task name**
   - [ ] the pull request description should contain the following information:

@@ -1,5 +1,6 @@
 const keysConfig = {
   Backquote: {
+    code: 'Backquote',
     input: true,
     en: '`',
     enCaps: '~',
@@ -7,6 +8,7 @@ const keysConfig = {
     ruCaps: '[',
   },
   Digit1: {
+    code: 'Digit1',
     input: true,
     en: '1',
     enCaps: '!',
@@ -14,6 +16,7 @@ const keysConfig = {
     ruCaps: '!',
   },
   Digit2: {
+    code: 'Digit2',
     input: true,
     en: '2',
     enCaps: '@',
@@ -21,6 +24,7 @@ const keysConfig = {
     ruCaps: '"',
   },
   Digit3: {
+    code: 'Digit3',
     input: true,
     en: '3',
     enCaps: '#',
@@ -28,6 +32,7 @@ const keysConfig = {
     ruCaps: '№',
   },
   Digit4: {
+    code: 'Digit4',
     input: true,
     en: '4',
     enCaps: '$',
@@ -35,6 +40,7 @@ const keysConfig = {
     ruCaps: '%',
   },
   Digit5: {
+    code: 'Digit5',
     input: true,
     en: '5',
     enCaps: '%',
@@ -42,6 +48,7 @@ const keysConfig = {
     ruCaps: ':',
   },
   Digit6: {
+    code: 'Digit6',
     input: true,
     en: '6',
     enCaps: '^',
@@ -49,6 +56,7 @@ const keysConfig = {
     ruCaps: ',',
   },
   Digit7: {
+    code: 'Digit7',
     input: true,
     en: '7',
     enCaps: '&',
@@ -56,6 +64,7 @@ const keysConfig = {
     ruCaps: '.',
   },
   Digit8: {
+    code: 'Digit8',
     input: true,
     en: '8',
     enCaps: '*',
@@ -63,6 +72,7 @@ const keysConfig = {
     ruCaps: ';',
   },
   Digit9: {
+    code: 'Digit9',
     input: true,
     en: '9',
     enCaps: '(',
@@ -70,6 +80,7 @@ const keysConfig = {
     ruCaps: '(',
   },
   Digit0: {
+    code: 'Digit0',
     input: true,
     en: '0',
     enCaps: ')',
@@ -77,6 +88,7 @@ const keysConfig = {
     ruCaps: ')',
   },
   Minus: {
+    code: 'Minus',
     input: true,
     en: '-',
     enCaps: '_',
@@ -84,6 +96,7 @@ const keysConfig = {
     ruCaps: '_',
   },
   Equal: {
+    code: 'Equal',
     input: true,
     en: '=',
     enCaps: '+',
@@ -91,6 +104,7 @@ const keysConfig = {
     ruCaps: '+',
   },
   Backspace: {
+    code: 'Backspace',
     input: false,
     en: 'Backspace',
     enCaps: 'Backspace',
@@ -98,6 +112,7 @@ const keysConfig = {
     ruCaps: 'Backspace',
   },
   Tab: {
+    code: 'Tab',
     input: false,
     en: 'Tab',
     enCaps: 'Tab',
@@ -105,6 +120,7 @@ const keysConfig = {
     ruCaps: 'Tab',
   },
   KeyQ: {
+    code: 'KeyQ',
     input: true,
     en: 'q',
     enCaps: 'Q',
@@ -112,62 +128,71 @@ const keysConfig = {
     ruCaps: 'Й',
   },
   KeyW: {
+    code: 'KeyW',
     input: true,
     en: 'w',
     enCaps: 'W',
     ru: 'ц',
     ruCaps: 'Ц',
   },
-  keyE: {
+  KeyE: {
+    code: 'KeyE',
     input: true,
     en: 'e',
     enCaps: 'E',
     ru: 'у',
     ruCaps: 'У',
   },
-  keyR: {
+  KeyR: {
+    code: 'KeyR',
     input: true,
     en: 'r',
     enCaps: 'R',
     ru: 'к',
     ruCaps: 'К',
   },
-  keyT: {
+  KeyT: {
+    code: 'KeyT',
     input: true,
     en: 't',
     enCaps: 'T',
     ru: 'е',
     ruCaps: 'Е',
   },
-  keyY: {
+  KeyY: {
+    code: 'KeyY',
     input: true,
     en: 'y',
     enCaps: 'Y',
     ru: 'н',
     ruCaps: 'Н',
   },
-  keyU: {
+  KeyU: {
+    code: 'KeyU',
     input: true,
     en: 'u',
     enCaps: 'U',
     ru: 'г',
     ruCaps: 'Г',
   },
-  keyI: {
+  KeyI: {
+    code: 'KeyI',
     input: true,
     en: 'i',
     enCaps: 'I',
     ru: 'ш',
     ruCaps: 'Ш',
   },
-  keyO: {
+  KeyO: {
+    code: 'KeyO',
     input: true,
     en: 'o',
     enCaps: 'O',
     ru: 'щ',
     ruCaps: 'Щ',
   },
-  keyP: {
+  KeyP: {
+    code: 'KeyP',
     input: true,
     en: 'p',
     enCaps: 'P',
@@ -175,6 +200,7 @@ const keysConfig = {
     ruCaps: 'З',
   },
   BracketLeft: {
+    code: 'BracketLeft',
     input: true,
     en: '[',
     enCaps: '{',
@@ -182,13 +208,15 @@ const keysConfig = {
     ruCaps: 'Х',
   },
   BracketRight: {
+    code: 'BracketRight',
     input: true,
     en: ']',
     enCaps: '}',
     ru: 'ъ',
     ruCaps: 'Ъ',
   },
-  IntlBackslash: {
+  Backslash: {
+    code: 'Backslash',
     input: true,
     en: '\\',
     enCaps: '|',
@@ -196,6 +224,7 @@ const keysConfig = {
     ruCaps: 'Ё',
   },
   Delete: {
+    code: 'Delete',
     input: false,
     en: 'Del',
     enCaps: 'Del',
@@ -203,69 +232,79 @@ const keysConfig = {
     ruCaps: 'Del',
   },
   CapsLock: {
+    code: 'CapsLock',
     input: false,
     en: 'CapsLock',
     enCaps: 'CapsLock',
     ru: 'CapsLock',
     ruCaps: 'CapsLock',
   },
-  keyA: {
+  KeyA: {
+    code: 'KeyA',
     input: true,
     en: 'a',
     enCaps: 'A',
     ru: 'ф',
     ruCaps: 'Ф',
   },
-  keyS: {
+  KeyS: {
+    code: 'KeyS',
     input: true,
     en: 's',
     enCaps: 'S',
     ru: 'ы',
     ruCaps: 'Ы',
   },
-  keyD: {
+  KeyD: {
+    code: 'KeyD',
     input: true,
     en: 'd',
     enCaps: 'D',
     ru: 'в',
     ruCaps: 'В',
   },
-  keyF: {
+  KeyF: {
+    code: 'KeyF',
     input: true,
     en: 'f',
     enCaps: 'F',
     ru: 'а',
     ruCaps: 'А',
   },
-  keyG: {
+  KeyG: {
+    code: 'KeyG',
     input: true,
     en: 'g',
     enCaps: 'G',
     ru: 'п',
     ruCaps: 'П',
   },
-  keyH: {
+  KeyH: {
+    code: 'KeyH',
     input: true,
     en: 'h',
     enCaps: 'H',
     ru: 'р',
     ruCaps: 'Р',
   },
-  keyJ: {
+  KeyJ: {
+    code: 'KeyJ',
     input: true,
     en: 'j',
     enCaps: 'J',
     ru: 'о',
     ruCaps: 'О',
   },
-  keyK: {
+  KeyK: {
+    code: 'KeyK',
     input: true,
     en: 'k',
     enCaps: 'K',
     ru: 'л',
     ruCaps: 'Л',
   },
-  keyL: {
+  KeyL: {
+    code: 'KeyL',
     input: true,
     en: 'l',
     enCaps: 'L',
@@ -273,6 +312,7 @@ const keysConfig = {
     ruCaps: 'Д',
   },
   Semicolon: {
+    code: 'Semicolon',
     input: true,
     en: ';',
     enCaps: ':',
@@ -280,6 +320,7 @@ const keysConfig = {
     ruCaps: 'Ж',
   },
   Quote: {
+    code: 'Quote',
     input: true,
     en: '\'',
     enCaps: '"',
@@ -287,6 +328,7 @@ const keysConfig = {
     ruCaps: 'Э',
   },
   Enter: {
+    code: 'Enter',
     input: false,
     en: 'Enter',
     enCaps: 'Enter',
@@ -294,55 +336,63 @@ const keysConfig = {
     ruCaps: 'Enter',
   },
   ShiftLeft: {
+    code: 'ShiftLeft',
     input: false,
     en: 'Shift',
     enCaps: 'Shift',
     ru: 'Shift',
     ruCaps: 'Shift',
   },
-  keyZ: {
+  KeyZ: {
+    code: 'KeyZ',
     input: true,
     en: 'z',
     enCaps: 'Z',
     ru: 'я',
     ruCaps: 'Я',
   },
-  keyX: {
+  KeyX: {
+    code: 'KeyX',
     input: true,
     en: 'x',
     enCaps: 'X',
     ru: 'ч',
     ruCaps: 'Ч',
   },
-  keyC: {
+  KeyC: {
+    code: 'KeyC',
     input: true,
     en: 'c',
     enCaps: 'C',
     ru: 'с',
     ruCaps: 'С',
   },
-  keyV: {
+  KeyV: {
+    code: 'KeyV',
     input: true,
     en: 'v',
     enCaps: 'V',
     ru: 'м',
     ruCaps: 'М',
   },
-  keyB: {
+  KeyB: {
+    code: 'KeyB',
     input: true,
     en: 'b',
     enCaps: 'B',
     ru: 'и',
     ruCaps: 'И',
   },
-  keyN: {
+  KeyN: {
+    code: 'KeyN',
     input: true,
     en: 'n',
     enCaps: 'N',
     ru: 'т',
     ruCaps: 'Т',
   },
-  keyM: {
+  KeyM: {
+    code: 'KeyM',
     input: true,
     en: 'm',
     enCaps: 'M',
@@ -350,6 +400,7 @@ const keysConfig = {
     ruCaps: 'Ь',
   },
   Comma: {
+    code: 'Comma',
     input: true,
     en: ',',
     enCaps: '<',
@@ -357,6 +408,7 @@ const keysConfig = {
     ruCaps: 'Б',
   },
   Period: {
+    code: 'Period',
     input: true,
     en: '.',
     enCaps: '>',
@@ -364,6 +416,7 @@ const keysConfig = {
     ruCaps: 'Ю',
   },
   Slash: {
+    code: 'Slash',
     input: true,
     en: '/',
     enCaps: '?',
@@ -371,6 +424,7 @@ const keysConfig = {
     ruCaps: '?',
   },
   ArrowUp: {
+    code: 'ArrowUp',
     input: false,
     en: 'arrowUp',
     enCaps: 'arrowUp',
@@ -378,6 +432,7 @@ const keysConfig = {
     ruCaps: 'arrowUp',
   },
   ShiftRight: {
+    code: 'ShiftRight',
     input: false,
     en: 'Shift',
     enCaps: 'Shift',
@@ -385,6 +440,7 @@ const keysConfig = {
     ruCaps: 'Shift',
   },
   ControlLeft: {
+    code: 'ControlLeft',
     input: false,
     en: 'Ctrl',
     enCaps: 'Ctrl',
@@ -392,6 +448,7 @@ const keysConfig = {
     ruCaps: 'Ctrl',
   },
   AltLeft: {
+    code: 'AltLeft',
     input: false,
     en: 'Alt',
     enCaps: 'Alt',
@@ -399,6 +456,7 @@ const keysConfig = {
     ruCaps: 'Alt',
   },
   MetaLeft: {
+    code: 'MetaLeft',
     input: false,
     en: 'Win',
     enCaps: 'Win',
@@ -406,6 +464,7 @@ const keysConfig = {
     ruCaps: 'Win',
   },
   Space: {
+    code: 'Space',
     input: true,
     en: ' ',
     enCaps: ' ',
@@ -413,6 +472,7 @@ const keysConfig = {
     ruCaps: ' ',
   },
   AltRight: {
+    code: 'AltRight',
     input: false,
     en: 'Alt',
     enCaps: 'Alt',
@@ -420,6 +480,7 @@ const keysConfig = {
     ruCaps: 'Alt',
   },
   ArrowLeft: {
+    code: 'ArrowLeft',
     input: false,
     en: 'arrowLeft',
     enCaps: 'arrowLeft',
@@ -427,6 +488,7 @@ const keysConfig = {
     ruCaps: 'arrowLeft',
   },
   ArrowDown: {
+    code: 'ArrowDown',
     input: false,
     en: 'arrowDown',
     enCaps: 'arrowDown',
@@ -434,6 +496,7 @@ const keysConfig = {
     ruCaps: 'arrowDown',
   },
   ArrowRight: {
+    code: 'ArrowRight',
     input: false,
     en: 'arrowRight',
     enCaps: 'arrowRight',
@@ -441,6 +504,7 @@ const keysConfig = {
     ruCaps: 'arrowRight',
   },
   ControlRight: {
+    code: 'ControlRight',
     input: false,
     en: 'Ctrl',
     enCaps: 'Ctrl',

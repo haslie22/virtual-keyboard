@@ -1,6 +1,6 @@
 import { OUTPUT_VALUE } from './data/text-default';
 
-import createElement from './helpers';
+import { createElement } from './helpers';
 
 class Output {
   #content = '';
@@ -11,9 +11,9 @@ class Output {
     container.append(this.output);
   }
 
-  set content(value) {
+  setContent(value) {
     this.#content = value;
-    this.output.textContent = this.#content;
+    this.output.textContent += this.#content;
   }
 }
 

@@ -1,6 +1,6 @@
 import { APP_NAME } from './data/text-default';
 
-import createElement from './helpers';
+import { createElement } from './helpers';
 
 class App {
   #title;
@@ -21,7 +21,62 @@ class App {
     this.#title = new Heading(this.app, APP_NAME);
     this.#ouput = new Output(this.app);
     this.#keyboard = new Keyboard(this.app, this.config, this.styleConfig, this.language, Key);
+
+    this.currentKey = null;
+
+    this.addListeners();
+  }
+
+  addListeners() {
+    document.addEventListener('keydown', (event) => {
+      event.preventDefault();
+      this.triggerPressEvent(event);
+    });
+
+    document.addEventListener('keyup', () => {
+      if (this.currentKey) {
+        this.currentKey.key.classList.remove('active');
+      }
+    });
+
+    this.app.addEventListener('keyClicked', (event) => {
+      this.update(event.detail.keyCode, event.detail.key);
+    });
+
+    this.app.addEventListener('keyPressed', (event) => {
+      event.preventDefault();
+
+      this.currentKey = this.#keyboard.keys.find(
+        (key) => key.keyData.code === event.detail.keyCode,
+      );
+
+      if (this.currentKey) {
+        this.currentKey.key.classList.add('active');
+        this.update(event.detail.keyCode, event.detail.key);
+      }
+    });
+  }
+
+  triggerPressEvent(event) {
+    const pressEvent = new CustomEvent('keyPressed', {
+      capture: true,
+      detail: {
+        key: event.key,
+        keyCode: event.code,
+      },
+    });
+
+    this.event = event;
+    this.app.dispatchEvent(pressEvent);
+  }
+
+  update(keyCode, char) {
+    if (this.config.get(keyCode)?.input) {
+      this.#ouput.setContent(char);
+    }
   }
 }
+
+// TODO: handler as argument for 'special' buttons ???
 
 export default App;
