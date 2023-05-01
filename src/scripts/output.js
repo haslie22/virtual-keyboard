@@ -27,6 +27,11 @@ class Output {
     this.#content += '\n';
     this.output.textContent = this.#content;
   }
+
+  processTab() {
+    this.#content += '\t';
+    this.output.textContent = this.#content;
+  }
 }
 
 export default Output;

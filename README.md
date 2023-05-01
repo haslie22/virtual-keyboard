@@ -12,10 +12,10 @@
 - [ ] switching keyboard layouts between English and another language is implemented. Selected language should be saved and used on page reload. A keyboard shortcut for switching a language should be specified on the page: `15/15`
 - [ ] mouse clicks on buttons of the virtual keyboard or pressing buttons on a physical keyboard inputs characters to the input field (text area): `15/15`
   - [ ] pressing the `Up`, `Down`, `Left` or `Right` arrow key inputs an arrow symbol in the input field, or implements navigation on the text area
-  - [ ] pressing the `Enter` should move a text cursor to the next line
+  - [x] pressing the `Enter` should move a text cursor to the next line
   - [ ] the `Tab` key creates a horizontal indent
   - [ ] pressing the rest of the function keys on a keyboard does not result in inputting symbols
-  - [ ] the `Backspace` key removes character before the text cursor
+  - [x] the `Backspace` key removes character before the text cursor
   - [ ] the `Del` key removes character after the text cursor
   - [ ] the `Shift`, `Alt`, `Ctrl`, `Caps lock` and `Space` keys should work as on a real keyboard
 

@@ -140,6 +140,9 @@ class App {
           case ('Enter'):
             this.#output.processEnter();
             break;
+          case ('Tab'):
+            this.#output.processTab();
+            break;
           default:
             console.log('no matches');
         }
