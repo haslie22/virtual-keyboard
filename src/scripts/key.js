@@ -36,19 +36,12 @@ class Key {
     });
 
     this.key.addEventListener('mouseup', () => {
-      this.key.classList.remove('active');
+      this.key.dispatchEvent(new KeyboardEvent('keyup'));
     });
 
     this.key.addEventListener('mouseleave', () => {
       this.key.classList.remove('active');
     });
-
-    // this.key.addEventListener('keyPressed', () => {
-    //   console.log('pressed');
-    //   this.key.classList.add('active');
-    //   this.playAudio();
-    //   this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);
-    // });
   }
 
   triggerClickEvent(key, keyCode) {
@@ -67,7 +60,5 @@ class Key {
     this.audio.play();
   }
 }
-
-// TODO: fix keys sticking on shortcuts
 
 export default Key;

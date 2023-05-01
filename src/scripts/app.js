@@ -34,36 +34,26 @@ class App {
       this.triggerPressEvent(event);
     });
 
-    document.addEventListener('keyup', () => {
+    document.addEventListener('keyup', (event) => {
       if (this.currentKeys.length) {
-        this.currentKeys.forEach((activeKey) => activeKey.key.classList.remove('active'));
+        this.handleUnpressedKey(event);
       }
+    });
 
-      this.currentKeys = [];
+    document.addEventListener('mouseup', (event) => {
+      if (this.currentKeys.length) {
+        this.handleUnpressedKey(event);
+      }
     });
 
     this.app.addEventListener('keyClicked', (event) => {
-      this.update(event.detail.keyCode, event.detail.key);
+      this.handleActiveKeys(event);
     });
 
     this.app.addEventListener('keyPressed', (event) => {
       event.preventDefault();
 
-      const activeKey = this.#keyboard.keys.find(
-        (key) => key.keyData.code === event.detail.keyCode,
-      );
-
-      if (activeKey) {
-        this.currentKeys.push(activeKey);
-      }
-
-      if (this.currentKeys.length) {
-        this.currentKeys.forEach((pressedKey) => {
-          pressedKey.playAudio();
-          pressedKey.key.classList.add('active');
-        });
-        this.update(event.detail.keyCode, event.detail.key);
-      }
+      this.handleActiveKeys(event);
     });
   }
 
@@ -80,13 +70,53 @@ class App {
     this.app.dispatchEvent(pressEvent);
   }
 
+  handleActiveKeys(event) {
+    const activeKey = this.#keyboard.keys.find(
+      (key) => key.keyData.code === event.detail.keyCode,
+    );
+
+    if (activeKey && !this.currentKeys.includes(activeKey)) {
+      this.currentKeys.push(activeKey);
+    }
+
+    if (this.currentKeys.length) {
+      this.currentKeys.forEach((pressedKey) => {
+        pressedKey.playAudio();
+        pressedKey.key.classList.add('active');
+      });
+      this.update(event.detail.keyCode, event.detail.key);
+    }
+
+    if (this.currentKeys.length > 1) {
+      this.checkForShortcuts();
+    }
+  }
+
+  handleUnpressedKey(event) {
+    let unpressedKey = null;
+
+    if (event.type === 'keyup') {
+      unpressedKey = this.currentKeys.find((key) => key.keyData.code === event.code);
+    } else {
+      unpressedKey = this.currentKeys.find(
+        (key) => key.keyData.code === (
+          event.target.dataset?.keyCode || event.target.parentNode.dataset.keyCode),
+      );
+    }
+
+    unpressedKey.key.classList.remove('active');
+    this.currentKeys.splice(this.currentKeys.indexOf(unpressedKey), 1);
+  }
+
+  checkForShortcuts() {
+    // TODO: using this.currentKeys check for available shortcuts and write handlers
+  }
+
   update(keyCode, char) {
     if (this.config.get(keyCode)?.input) {
       this.#ouput.setContent(char);
     }
   }
 }
-
-// TODO: handler as argument for 'special' buttons ???
 
 export default App;
