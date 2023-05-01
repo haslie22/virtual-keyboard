@@ -18,6 +18,11 @@
   padding: 30px;
   margin-bottom: 40px;
   resize: none;
+
+  &:focus {
+    outline: 1px solid map.get($key-accent-mustard-pseudo, "top-gradient-light");
+    box-shadow: inset 0px 0px 4px rgba(255 255 255 / 25%),
+  }
 }
 
 .output__hint {
@@ -25,7 +30,7 @@
   color: map.get($key-font-colors, "bright");
 
   opacity: 80%;
-  padding-top: 20px;
+  padding-block: 30px 20px;
 
   & div:nth-child(1) {
     margin-bottom: 7px;

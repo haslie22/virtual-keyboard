@@ -75,15 +75,17 @@ class App {
   }
 
   triggerPressEvent(event) {
+    const eventKey = this.config.get(event.code)[this.language];
+    const eventCode = this.config.get(event.code).code;
+    console.log(eventKey, eventCode);
     const pressEvent = new CustomEvent('keyPressed', {
       capture: true,
       detail: {
-        key: event.key,
-        keyCode: event.code,
+        key: eventKey,
+        keyCode: eventCode,
       },
     });
 
-    this.event = event;
     this.app.dispatchEvent(pressEvent);
   }
 
@@ -121,9 +123,10 @@ class App {
           event.target.dataset?.keyCode || event.target.parentNode.dataset.keyCode),
       );
     }
-
-    unpressedKey.key.classList.remove('active');
-    this.currentKeys.splice(this.currentKeys.indexOf(unpressedKey), 1);
+    if (unpressedKey) {
+      unpressedKey.key.classList.remove('active');
+      this.currentKeys.splice(this.currentKeys.indexOf(unpressedKey), 1);
+    }
   }
 
   checkForShortcuts() {
@@ -149,6 +152,7 @@ class App {
   }
 
   update(keyCode, char) {
+    console.log(keyCode, char);
     const start = this.#output.output.selectionStart;
     const end = this.#output.output.selectionEnd;
 
@@ -162,7 +166,7 @@ class App {
           this.#output.output.selectionStart = this.#output.processBackspace(start, end);
           break;
         case ('Enter'):
-          this.#output.output.selectionStart = this.#output.processEnter(start);
+          this.#output.output.selectionStart = this.#output.processEnter(start, end);
           break;
         case ('Tab'):
           this.#output.output.selectionStart = this.#output.processTab(start, end);
@@ -187,5 +191,7 @@ class App {
 // TODO: fix capslock issues
 
 // TODO: change letter case on Shift
+
+// TODO: fix enter in the middle of word
 
 export default App;

@@ -45,6 +45,7 @@ class Key {
   }
 
   triggerClickEvent(key, keyCode) {
+    console.log('from event: ', key, keyCode);
     const clickEvent = new CustomEvent('keyClicked', {
       bubbles: true,
       detail: {

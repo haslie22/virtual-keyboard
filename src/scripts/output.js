@@ -43,11 +43,11 @@ class Output {
     return start;
   }
 
-  processEnter(start) {
-    this.output.textContent = `${this.#content.substring(0, start)}\n`;
+  processEnter(start, end) {
+    this.output.textContent = `${this.#content.substring(0, start)}\n${this.#content.substring(end)}`;
     this.#content = this.output.textContent;
 
-    return this.#content.length;
+    return (start + 1, start + 1);
   }
 
   processTab(start, end) {

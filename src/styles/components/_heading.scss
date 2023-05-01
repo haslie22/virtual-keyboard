@@ -5,6 +5,7 @@
 
   color: map.get($key-font-colors, "bright");
   text-shadow: 2px 2px 4px rgba(0 0 0 / 0.5);
+  padding-top: 20px;
 
   & .heading__char:nth-of-type(5),
   & .heading__char:nth-of-type(6),
