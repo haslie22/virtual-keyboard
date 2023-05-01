@@ -34,8 +34,6 @@ class App {
     this.#keyboard = new Keyboard(this.app, this.config, this.styleConfig, this.language, Key);
 
     this.currentKeys = [];
-
-    this.addListeners();
   }
 
   addListeners() {
@@ -134,26 +132,26 @@ class App {
     this.currentKeys.forEach((currentKey) => {
       if (this.specialKeys.includes(currentKey.keyData.code)) {
         const specialKeyCode = currentKey.keyData.code;
-        let keysToCapsLock = null;
+        const keysToCaps = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
 
         switch (specialKeyCode) {
           case ('ShiftLeft'):
-            keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
-            if (keysToCapsLock.filter((key) => key.keyData.code === 'AltLeft').length) {
-              this.language = this.language === 'en' ? 'ru' : 'en';
-              this.changeLanguage();
-            } else {
-              this.updateCaps(keysToCapsLock);
-            }
+            this.updateCaps(keysToCaps);
             break;
           case ('ShiftRight'):
-            keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
-            this.updateCaps(keysToCapsLock);
+            this.updateCaps(keysToCaps);
+            break;
+          case ('ControlLeft'):
+            if (keysToCaps.filter((key) => key.keyData.code === 'AltLeft').length) {
+              this.language = this.language === 'en' ? 'ru' : 'en';
+              this.changeLanguage();
+            }
             break;
           default:
-            console.log('no matches');
+            return this;
         }
       }
+      return this;
     });
   }
 
@@ -187,9 +185,10 @@ class App {
           break;
 
         default:
-          console.log('no matches from special keys');
+          return this;
       }
     }
+    return this;
   }
 
   updateCaps(keysToCapsLock) {
@@ -204,9 +203,5 @@ class App {
     this.#keyboard.refillKeys('language');
   }
 }
-
-// TODO: fix capslock issues
-
-// TODO: change letter case on Shift
 
 export default App;

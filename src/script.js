@@ -14,9 +14,7 @@ import { getLocalStorage } from './scripts/helpers';
 
 const DEFAULT_LANGUAGE = 'en';
 const language = getLocalStorage('LANGUAGE') || DEFAULT_LANGUAGE;
-console.log(language);
 
-// eslint-disable-next-line no-unused-vars
 const app = new App(
   document.body,
   config.keysMap,
@@ -28,3 +26,5 @@ const app = new App(
   Key,
   Heading,
 );
+
+app.addListeners();

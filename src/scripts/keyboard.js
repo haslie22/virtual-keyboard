@@ -62,18 +62,18 @@ class Keyboard {
   refillKeys(param) {
     if (param === 'language') {
       this.keys.forEach((keyObj) => {
-        // eslint-disable-next-line no-param-reassign
-        keyObj.keyChar.textContent = this.config.get(keyObj.keyData.code)[this.language];
+        const keyCharElement = keyObj.keyChar;
+        keyCharElement.textContent = this.config.get(keyObj.keyData.code)[this.language];
       });
     } else if (param === 'capsOn') {
       this.keys.forEach((keyObj) => {
-        // eslint-disable-next-line no-param-reassign
-        keyObj.keyChar.textContent = this.config.get(keyObj.keyData.code)[`${this.language}Caps`];
+        const keyCharElement = keyObj.keyChar;
+        keyCharElement.textContent = this.config.get(keyObj.keyData.code)[`${this.language}Caps`];
       });
     } else {
       this.keys.forEach((keyObj) => {
-        // eslint-disable-next-line no-param-reassign
-        keyObj.keyChar.textContent = this.config.get(keyObj.keyData.code)[this.language];
+        const keyCharElement = keyObj.keyChar;
+        keyCharElement.textContent = this.config.get(keyObj.keyData.code)[this.language];
       });
     }
   }

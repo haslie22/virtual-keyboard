@@ -12,7 +12,5 @@ module.exports = {
   },
   rules: {
     'import/extensions': 'off',
-    // TODO: enable before release
-    'no-console': 'off',
   },
 };
