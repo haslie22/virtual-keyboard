@@ -114,6 +114,9 @@ class App {
     let unpressedKey = null;
 
     if (event.type === 'keyup') {
+      if (event.key === 'Shift') {
+        this.#keyboard.refillKeys('capsOff');
+      }
       unpressedKey = this.currentKeys.find((key) => key.keyData.code === event.code);
     } else {
       unpressedKey = this.currentKeys.find(
@@ -176,6 +179,12 @@ class App {
         case ('Delete'):
           this.#output.output.selectionStart = this.#output.processDelete(start, end);
           break;
+        case ('ShiftLeft'):
+          this.#keyboard.refillKeys('capsOn');
+          break;
+        case ('ShiftRight'):
+          this.#keyboard.refillKeys('capsOn');
+          break;
 
         default:
           console.log('no matches from special keys');
@@ -192,7 +201,7 @@ class App {
   changeLanguage() {
     this.#keyboard.language = this.language;
     setLocalStorage('LANGUAGE', this.language);
-    this.#keyboard.refillKeys();
+    this.#keyboard.refillKeys('language');
   }
 }
 
