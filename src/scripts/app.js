@@ -98,7 +98,7 @@ class App {
       this.update(event.detail.keyCode, event.detail.key);
     }
 
-    if (this.currentKeys.length > 1) {
+    if (this.currentKeys.length >= 1) {
       this.checkForShortcuts();
     }
   }
@@ -127,13 +127,15 @@ class App {
 
         switch (currentKey.keyData.code) {
           case ('ShiftLeft'):
-            console.log('Shift left pressed!');
             keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
             this.updateCaps(keysToCapsLock);
             break;
           case ('ShiftRight'):
             keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
             this.updateCaps(keysToCapsLock);
+            break;
+          case ('Backspace'):
+            this.#ouput.removeLastChar();
             break;
           default:
             console.log('no matches');
@@ -142,10 +144,15 @@ class App {
     });
   }
 
-  update(keyCode, char) {
+  update(keyCode, char, direction = 'forward') {
     if (this.config.get(keyCode)?.input) {
-      this.#ouput.setContent(char);
-      console.log(char);
+      if (direction === 'forward') {
+        this.#ouput.setContent(char);
+      }
+
+      if (direction === 'backward') {
+        this.#ouput.removeLastChar();
+      }
     }
   }
 

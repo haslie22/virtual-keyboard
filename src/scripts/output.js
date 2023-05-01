@@ -8,12 +8,19 @@ class Output {
   constructor(container) {
     this.output = createElement('textarea', ...['output', 'app__output']);
     this.output.textContent = OUTPUT_VALUE;
+    this.#content = this.output.textContent;
+
     container.append(this.output);
   }
 
   setContent(value) {
-    this.#content = value;
-    this.output.textContent += this.#content;
+    this.#content += value;
+    this.output.textContent = this.#content;
+  }
+
+  removeLastChar() {
+    this.#content = this.#content.slice(0, -1);
+    this.output.textContent = this.#content;
   }
 }
 

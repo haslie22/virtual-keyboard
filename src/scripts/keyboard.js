@@ -49,4 +49,6 @@ class Keyboard {
   }
 }
 
+// TODO: fix user clicks between keys
+
 export default Keyboard;
