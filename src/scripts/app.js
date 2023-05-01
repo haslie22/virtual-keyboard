@@ -102,14 +102,10 @@ class App {
         pressedKey.key.classList.add('active');
       });
 
-      if (event.detail.keyCode === 'Backspace') {
-        this.update(event.detail.keyCode, event.detail.key, 'backward');
-      } else {
-        this.update(event.detail.keyCode, event.detail.key);
-      }
+      this.update(event.detail.keyCode, event.detail.key);
     }
 
-    if (this.currentKeys.length >= 1) {
+    if (this.currentKeys.length > 1) {
       this.checkForShortcuts();
     }
   }
@@ -145,15 +141,6 @@ class App {
             keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
             this.updateCaps(keysToCapsLock);
             break;
-          case ('Backspace'):
-            this.#output.removeLastChar();
-            break;
-          case ('Enter'):
-            this.#output.processEnter();
-            break;
-          case ('Tab'):
-            this.#output.processTab();
-            break;
           default:
             console.log('no matches');
         }
@@ -162,22 +149,26 @@ class App {
   }
 
   update(keyCode, char) {
-    if (this.config.get(keyCode)?.input) {
-      const start = this.#output.output.selectionStart;
-      const end = this.#output.output.selectionEnd;
+    const start = this.#output.output.selectionStart;
+    const end = this.#output.output.selectionEnd;
 
+    if (this.config.get(keyCode)?.input) {
       this.#output.output.selectionStart = this.#output.setContent(char, start, end);
     }
 
     if (!this.config.get(keyCode)?.input) {
-      let start = null;
-      let end = null;
-
       switch (keyCode) {
         case ('Backspace'):
-          start = this.#output.output.selectionStart;
-          end = this.#output.output.selectionEnd;
-          this.#output.output.selectionStart = this.#output.removeLastChar(start, end);
+          this.#output.output.selectionStart = this.#output.processBackspace(start, end);
+          break;
+        case ('Enter'):
+          this.#output.output.selectionStart = this.#output.processEnter(start);
+          break;
+        case ('Tab'):
+          this.#output.output.selectionStart = this.#output.processTab(start, end);
+          break;
+        case ('Delete'):
+          this.#output.output.selectionStart = this.#output.processDelete(start, end);
           break;
 
         default:
@@ -194,5 +185,7 @@ class App {
 }
 
 // TODO: fix capslock issues
+
+// TODO: change letter case on Shift
 
 export default App;

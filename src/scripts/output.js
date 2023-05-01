@@ -16,10 +16,10 @@ class Output {
     + value + this.#content.substring(end);
     this.#content = this.output.textContent;
 
-    return this.#content.length;
+    return start + 1;
   }
 
-  removeLastChar(start, end) {
+  processBackspace(start, end) {
     if (start === end) {
       this.output.textContent = this.#content.substring(0, start - 1)
       + this.#content.substring(end);
@@ -31,14 +31,31 @@ class Output {
     return (start === end ? start - 1 : start);
   }
 
-  processEnter() {
-    this.#content += '\n';
-    this.output.textContent = this.#content;
+  processDelete(start, end) {
+    if (start === end) {
+      this.output.textContent = this.#content.substring(0, start)
+      + this.#content.substring(end + 1);
+    } else {
+      this.output.textContent = this.#content.substring(0, start)
+      + this.#content.substring(end);
+    }
+    this.#content = this.output.textContent;
+    return start;
   }
 
-  processTab() {
-    this.#content += '\t';
-    this.output.setRangeText = this.#content;
+  processEnter(start) {
+    this.output.textContent = `${this.#content.substring(0, start)}\n`;
+    this.#content = this.output.textContent;
+
+    return this.#content.length;
+  }
+
+  processTab(start, end) {
+    this.output.textContent = `${this.#content.substring(0, start)
+    }\t${this.#content.substring(end)}`;
+    this.#content = this.output.textContent;
+
+    return start + 1;
   }
 }
 

@@ -14,7 +14,7 @@
   - [ ] pressing the `Up`, `Down`, `Left` or `Right` arrow key inputs an arrow symbol in the input field, or implements navigation on the text area
   - [x] pressing the `Enter` should move a text cursor to the next line
   - [x] the `Tab` key creates a horizontal indent
-  - [ ] pressing the rest of the function keys on a keyboard does not result in inputting symbols
+  - [x] pressing the rest of the function keys on a keyboard does not result in inputting symbols
   - [x] the `Backspace` key removes character before the text cursor
   - [ ] the `Del` key removes character after the text cursor
   - [ ] the `Shift`, `Alt`, `Ctrl`, `Caps lock` and `Space` keys should work as on a real keyboard
