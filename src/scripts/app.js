@@ -11,8 +11,19 @@ class App {
 
   #Key;
 
-  constructor(container, config, styleConfig, language, Keyboard, Output, Key, Heading) {
+  constructor(
+    container,
+    config,
+    specialKeys,
+    styleConfig,
+    language,
+    Keyboard,
+    Output,
+    Key,
+    Heading,
+  ) {
     this.config = config;
+    this.specialKeys = specialKeys;
     this.styleConfig = styleConfig;
     this.language = language;
 
@@ -79,7 +90,7 @@ class App {
       this.currentKeys.push(activeKey);
     }
 
-    if (this.currentKeys.length) {
+    if (this.currentKeys.length === 1) {
       this.currentKeys.forEach((pressedKey) => {
         pressedKey.playAudio();
         pressedKey.key.classList.add('active');
@@ -109,14 +120,42 @@ class App {
   }
 
   checkForShortcuts() {
-    // TODO: using this.currentKeys check for available shortcuts and write handlers
+    this.currentKeys.forEach((currentKey) => {
+      if (this.specialKeys.includes(currentKey.keyData.code)) {
+        const specialKeyCode = currentKey.keyData.code;
+        let keysToCapsLock = null;
+
+        switch (currentKey.keyData.code) {
+          case ('ShiftLeft'):
+            console.log('Shift left pressed!');
+            keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
+            this.updateCaps(keysToCapsLock);
+            break;
+          case ('ShiftRight'):
+            keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
+            this.updateCaps(keysToCapsLock);
+            break;
+          default:
+            console.log('no matches');
+        }
+      }
+    });
   }
 
   update(keyCode, char) {
     if (this.config.get(keyCode)?.input) {
       this.#ouput.setContent(char);
+      console.log(char);
     }
   }
+
+  updateCaps(keysToCapsLock) {
+    keysToCapsLock.forEach((key) => {
+      this.update(key.keyData.code, key.keyData[`${this.language}Caps`]);
+    });
+  }
 }
+
+// TODO: fix capslock issues
 
 export default App;

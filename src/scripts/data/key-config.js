@@ -515,4 +515,11 @@ const keysConfig = {
 
 const keysMap = new Map(Object.entries(keysConfig));
 
-export default keysMap;
+const keysArray = Array.from(keysMap, ([key, value]) => ({
+  key,
+  value,
+}));
+
+const specialKeys = [...(keysArray.filter((key) => !key.value.input).map((object) => object.key))];
+
+export { keysMap, specialKeys };

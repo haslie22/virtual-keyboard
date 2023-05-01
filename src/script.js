@@ -1,4 +1,4 @@
-import keysMap from './scripts/data/key-config';
+import * as config from './scripts/data/key-config';
 import keyStyleConfig from './scripts/data/key-style-config';
 
 import './index.html';
@@ -18,7 +18,8 @@ const language = getLocalStorage('LANGUAGE') || DEFAULT_LANGUAGE;
 // eslint-disable-next-line no-unused-vars
 const app = new App(
   document.body,
-  keysMap,
+  config.keysMap,
+  config.specialKeys,
   keyStyleConfig,
   language,
   Keyboard,
