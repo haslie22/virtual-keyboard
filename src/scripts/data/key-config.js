@@ -447,14 +447,6 @@ const keysConfig = {
     ru: 'Ctrl',
     ruCaps: 'Ctrl',
   },
-  AltLeft: {
-    code: 'AltLeft',
-    input: false,
-    en: 'Alt',
-    enCaps: 'Alt',
-    ru: 'Alt',
-    ruCaps: 'Alt',
-  },
   MetaLeft: {
     code: 'MetaLeft',
     input: false,
@@ -462,6 +454,14 @@ const keysConfig = {
     enCaps: 'Win',
     ru: 'Win',
     ruCaps: 'Win',
+  },
+  AltLeft: {
+    code: 'AltLeft',
+    input: false,
+    en: 'Alt',
+    enCaps: 'Alt',
+    ru: 'Alt',
+    ruCaps: 'Alt',
   },
   Space: {
     code: 'Space',

@@ -7,7 +7,7 @@ class App {
 
   #keyboard;
 
-  #ouput;
+  #output;
 
   #Key;
 
@@ -30,7 +30,7 @@ class App {
     this.app = createElement('div', 'app');
     container.append(this.app);
     this.#title = new Heading(this.app, APP_NAME);
-    this.#ouput = new Output(this.app);
+    this.#output = new Output(this.app);
     this.#keyboard = new Keyboard(this.app, this.config, this.styleConfig, this.language, Key);
 
     this.currentKeys = [];
@@ -135,7 +135,10 @@ class App {
             this.updateCaps(keysToCapsLock);
             break;
           case ('Backspace'):
-            this.#ouput.removeLastChar();
+            this.#output.removeLastChar();
+            break;
+          case ('Enter'):
+            this.#output.processEnter();
             break;
           default:
             console.log('no matches');
@@ -147,11 +150,11 @@ class App {
   update(keyCode, char, direction = 'forward') {
     if (this.config.get(keyCode)?.input) {
       if (direction === 'forward') {
-        this.#ouput.setContent(char);
+        this.#output.setContent(char);
       }
 
       if (direction === 'backward') {
-        this.#ouput.removeLastChar();
+        this.#output.removeLastChar();
       }
     }
   }
