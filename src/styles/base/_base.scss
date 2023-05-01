@@ -18,6 +18,7 @@ html {
 
 .app {
   height: max(100vh, 800px);
+  min-width: 1050px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,4 +1,4 @@
-**link to deploy:** TBD     
+**link to deploy:** https://haslie22.github.io/virtual-keyboard/     
 **link to the task:** https://github.com/rolling-scopes-school/tasks/blob/master/tasks/virtual-keyboard/virtual-keyboard-ru.md     
 **link to the design file:** https://www.figma.com/file/8p9Zc6A0Ru0fxawOISDNZd/virtual-keyboard?node-id=0%3A1&t=9Dq7HoBD3Hy245Lq-1      
 
