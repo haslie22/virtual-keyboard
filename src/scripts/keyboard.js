@@ -58,8 +58,13 @@ class Keyboard {
       this.keys.push(key);
     });
   }
-}
 
-// TODO: fix user clicks between keys
+  refillKeys() {
+    this.keys.forEach((keyObj) => {
+      // eslint-disable-next-line no-param-reassign
+      keyObj.keyChar.textContent = this.config.get(keyObj.keyData.code)[this.language];
+    });
+  }
+}
 
 export default Keyboard;

@@ -39,7 +39,6 @@ class App {
   }
 
   addListeners() {
-    document.addEventListener('beforeunload', () => setLocalStorage(this.language));
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
       this.#output.output.focus();
@@ -77,7 +76,7 @@ class App {
   triggerPressEvent(event) {
     const eventKey = this.config.get(event.code)[this.language];
     const eventCode = this.config.get(event.code).code;
-    console.log(eventKey, eventCode);
+
     const pressEvent = new CustomEvent('keyPressed', {
       capture: true,
       detail: {
@@ -102,9 +101,8 @@ class App {
       this.currentKeys.forEach((pressedKey) => {
         pressedKey.playAudio();
         pressedKey.key.classList.add('active');
+        this.update(pressedKey.keyData.code, pressedKey.keyData[this.language]);
       });
-
-      this.update(event.detail.keyCode, event.detail.key);
     }
 
     if (this.currentKeys.length > 1) {
@@ -135,10 +133,15 @@ class App {
         const specialKeyCode = currentKey.keyData.code;
         let keysToCapsLock = null;
 
-        switch (currentKey.keyData.code) {
+        switch (specialKeyCode) {
           case ('ShiftLeft'):
             keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
-            this.updateCaps(keysToCapsLock);
+            if (keysToCapsLock.filter((key) => key.keyData.code === 'AltLeft').length) {
+              this.language = this.language === 'en' ? 'ru' : 'en';
+              this.changeLanguage();
+            } else {
+              this.updateCaps(keysToCapsLock);
+            }
             break;
           case ('ShiftRight'):
             keysToCapsLock = this.currentKeys.filter((key) => key.keyData.code !== specialKeyCode);
@@ -152,7 +155,6 @@ class App {
   }
 
   update(keyCode, char) {
-    console.log(keyCode, char);
     const start = this.#output.output.selectionStart;
     const end = this.#output.output.selectionEnd;
 
@@ -186,12 +188,16 @@ class App {
       this.update(key.keyData.code, key.keyData[`${this.language}Caps`]);
     });
   }
+
+  changeLanguage() {
+    this.#keyboard.language = this.language;
+    setLocalStorage('LANGUAGE', this.language);
+    this.#keyboard.refillKeys();
+  }
 }
 
 // TODO: fix capslock issues
 
 // TODO: change letter case on Shift
-
-// TODO: fix enter in the middle of word
 
 export default App;

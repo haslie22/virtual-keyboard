@@ -9,6 +9,7 @@ class Key {
     this.audio = audio;
 
     this.key = null;
+    this.keyChar = null;
 
     this.render();
   }
@@ -19,8 +20,9 @@ class Key {
     this.key = key;
 
     const keyChar = createElement('span', 'key__char');
+    this.keyChar = keyChar;
 
-    keyChar.textContent = this.keyData.en;
+    keyChar.textContent = this.keyData[this.language];
 
     key.append(keyChar);
     this.container.append(key);
@@ -45,7 +47,6 @@ class Key {
   }
 
   triggerClickEvent(key, keyCode) {
-    console.log('from event: ', key, keyCode);
     const clickEvent = new CustomEvent('keyClicked', {
       bubbles: true,
       detail: {
