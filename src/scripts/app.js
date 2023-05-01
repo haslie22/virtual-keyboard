@@ -42,6 +42,7 @@ class App {
     document.addEventListener('beforeunload', () => setLocalStorage(this.language));
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
+      this.#output.output.focus();
       this.triggerPressEvent(event);
     });
 
@@ -51,7 +52,12 @@ class App {
       }
     });
 
-    document.addEventListener('mouseup', (event) => {
+    this.#keyboard.keyboard.addEventListener('mousedown', (event) => {
+      event.preventDefault();
+      this.#output.output.focus();
+    });
+
+    this.#keyboard.keyboard.addEventListener('mouseup', (event) => {
       if (this.currentKeys.length) {
         this.handleUnpressedKey(event);
       }
@@ -95,7 +101,12 @@ class App {
         pressedKey.playAudio();
         pressedKey.key.classList.add('active');
       });
-      this.update(event.detail.keyCode, event.detail.key);
+
+      if (event.detail.keyCode === 'Backspace') {
+        this.update(event.detail.keyCode, event.detail.key, 'backward');
+      } else {
+        this.update(event.detail.keyCode, event.detail.key);
+      }
     }
 
     if (this.currentKeys.length >= 1) {
@@ -150,14 +161,27 @@ class App {
     });
   }
 
-  update(keyCode, char, direction = 'forward') {
+  update(keyCode, char) {
     if (this.config.get(keyCode)?.input) {
-      if (direction === 'forward') {
-        this.#output.setContent(char);
-      }
+      const start = this.#output.output.selectionStart;
+      const end = this.#output.output.selectionEnd;
 
-      if (direction === 'backward') {
-        this.#output.removeLastChar();
+      this.#output.output.selectionStart = this.#output.setContent(char, start, end);
+    }
+
+    if (!this.config.get(keyCode)?.input) {
+      let start = null;
+      let end = null;
+
+      switch (keyCode) {
+        case ('Backspace'):
+          start = this.#output.output.selectionStart;
+          end = this.#output.output.selectionEnd;
+          this.#output.output.selectionStart = this.#output.removeLastChar(start, end);
+          break;
+
+        default:
+          console.log('no matches from special keys');
       }
     }
   }

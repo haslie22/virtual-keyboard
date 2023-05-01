@@ -1,5 +1,3 @@
-import { OUTPUT_VALUE } from './data/text-default';
-
 import { createElement } from './helpers';
 
 class Output {
@@ -7,20 +5,30 @@ class Output {
 
   constructor(container) {
     this.output = createElement('textarea', ...['output', 'app__output']);
-    this.output.textContent = OUTPUT_VALUE;
+    this.output.textContent = '';
     this.#content = this.output.textContent;
 
     container.append(this.output);
   }
 
-  setContent(value) {
-    this.#content += value;
-    this.output.textContent = this.#content;
+  setContent(value, start, end) {
+    this.output.textContent = this.#content.substring(0, start)
+    + value + this.#content.substring(end);
+    this.#content = this.output.textContent;
+
+    return this.#content.length;
   }
 
-  removeLastChar() {
-    this.#content = this.#content.slice(0, -1);
-    this.output.textContent = this.#content;
+  removeLastChar(start, end) {
+    if (start === end) {
+      this.output.textContent = this.#content.substring(0, start - 1)
+      + this.#content.substring(end);
+    } else {
+      this.output.textContent = this.#content.substring(0, start)
+      + this.#content.substring(end);
+    }
+    this.#content = this.output.textContent;
+    return (start === end ? start - 1 : start);
   }
 
   processEnter() {
@@ -30,7 +38,7 @@ class Output {
 
   processTab() {
     this.#content += '\t';
-    this.output.textContent = this.#content;
+    this.output.setRangeText = this.#content;
   }
 }
 

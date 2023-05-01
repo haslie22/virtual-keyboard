@@ -24,6 +24,13 @@ $output-font: (
   "font-weight": 400,
 );
 
+$output-hint-font: (
+  "font-size": 1em,
+  "font-family": ('Roboto Mono', sans-serif),
+  "font-style": normal,
+  "font-weight": 400,
+);
+
 $key-default: (
   "face-gradient-light": #D2C3B2,
   "face-gradient-dark": #786D63,

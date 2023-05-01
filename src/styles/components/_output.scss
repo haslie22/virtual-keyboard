@@ -19,3 +19,15 @@
   margin-bottom: 40px;
   resize: none;
 }
+
+.output__hint {
+  @include font($output-hint-font...);
+  color: map.get($key-font-colors, "bright");
+
+  opacity: 80%;
+  padding-top: 20px;
+
+  & div:nth-child(1) {
+    margin-bottom: 7px;
+  }
+}

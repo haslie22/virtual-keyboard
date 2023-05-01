@@ -1,3 +1,5 @@
+import { OUTPUT_VALUE } from './data/text-default';
+
 import { createElement } from './helpers';
 
 import defauldSound from '../assets/sounds/default.mp3';
@@ -28,7 +30,16 @@ class Keyboard {
     const keyboardWrapper = createElement('div', 'keyboard-wrapper');
     const keyboard = createElement('div', 'keyboard');
     keyboardWrapper.append(keyboard);
-    this.container.append(keyboardWrapper);
+
+    const outputHint = createElement('div', 'output__hint');
+
+    Object.keys(OUTPUT_VALUE).forEach((key) => {
+      const outputHintText = createElement('div');
+      outputHintText.textContent = `${OUTPUT_VALUE[key]}`;
+      outputHint.append(outputHintText);
+    });
+
+    this.container.append(keyboardWrapper, outputHint);
 
     this.keyboard = keyboard;
     this.fill();

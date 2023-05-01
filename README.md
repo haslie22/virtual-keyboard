@@ -13,7 +13,7 @@
 - [ ] mouse clicks on buttons of the virtual keyboard or pressing buttons on a physical keyboard inputs characters to the input field (text area): `15/15`
   - [ ] pressing the `Up`, `Down`, `Left` or `Right` arrow key inputs an arrow symbol in the input field, or implements navigation on the text area
   - [x] pressing the `Enter` should move a text cursor to the next line
-  - [ ] the `Tab` key creates a horizontal indent
+  - [x] the `Tab` key creates a horizontal indent
   - [ ] pressing the rest of the function keys on a keyboard does not result in inputting symbols
   - [x] the `Backspace` key removes character before the text cursor
   - [ ] the `Del` key removes character after the text cursor
