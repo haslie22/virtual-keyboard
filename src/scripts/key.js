@@ -32,6 +32,7 @@ class Key {
 
   addListeners() {
     this.key.addEventListener('mousedown', () => {
+      console.log('mousedown works');
       this.key.classList.add('active');
       this.playAudio();
       this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);

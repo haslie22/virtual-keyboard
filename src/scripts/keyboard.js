@@ -59,13 +59,8 @@ class Keyboard {
     });
   }
 
-  refillKeys(param) {
-    if (param === 'language') {
-      this.keys.forEach((keyObj) => {
-        const keyCharElement = keyObj.keyChar;
-        keyCharElement.textContent = this.config.get(keyObj.keyData.code)[this.language];
-      });
-    } else if (param === 'capsOn') {
+  refillKeys(capsOn) {
+    if (capsOn) {
       this.keys.forEach((keyObj) => {
         const keyCharElement = keyObj.keyChar;
         keyCharElement.textContent = this.config.get(keyObj.keyData.code)[`${this.language}Caps`];
@@ -80,3 +75,5 @@ class Keyboard {
 }
 
 export default Keyboard;
+
+// TODO: fix sound and animation on Shift

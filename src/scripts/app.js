@@ -1,6 +1,8 @@
 import { APP_NAME } from './data/text-default';
 
-import { createElement, setLocalStorage } from './helpers';
+import {
+  createElement, setLocalStorage, detectShiftOnClick, detectPlatform,
+} from './helpers';
 
 class App {
   #title;
@@ -27,6 +29,11 @@ class App {
     this.styleConfig = styleConfig;
     this.language = language;
 
+    this.isCapsOn = false;
+    this.isShiftOn = false;
+    this.platform = detectPlatform();
+    console.log(this.platform);
+
     this.app = createElement('div', 'app');
     container.append(this.app);
     this.#title = new Heading(this.app, APP_NAME);
@@ -38,12 +45,14 @@ class App {
 
   addListeners() {
     document.addEventListener('keydown', (event) => {
+      console.log(event);
       event.preventDefault();
       this.#output.output.focus();
       this.triggerPressEvent(event);
     });
 
     document.addEventListener('keyup', (event) => {
+      console.log(event);
       if (this.currentKeys.length) {
         this.handleUnpressedKey(event);
       }
@@ -72,18 +81,20 @@ class App {
   }
 
   triggerPressEvent(event) {
-    const eventKey = this.config.get(event.code)[this.language];
-    const eventCode = this.config.get(event.code).code;
+    if (this.config.get(event.code)) {
+      const eventKey = this.config.get(event.code)[this.language];
+      const eventCode = this.config.get(event.code).code;
 
-    const pressEvent = new CustomEvent('keyPressed', {
-      capture: true,
-      detail: {
-        key: eventKey,
-        keyCode: eventCode,
-      },
-    });
+      const pressEvent = new CustomEvent('keyPressed', {
+        capture: true,
+        detail: {
+          key: eventKey,
+          keyCode: eventCode,
+        },
+      });
 
-    this.app.dispatchEvent(pressEvent);
+      this.app.dispatchEvent(pressEvent);
+    }
   }
 
   handleActiveKeys(event) {
@@ -113,10 +124,16 @@ class App {
 
     if (event.type === 'keyup') {
       if (event.key === 'Shift') {
-        this.#keyboard.refillKeys('capsOff');
+        this.isShiftOn = !this.isShiftOn;
+        this.#keyboard.refillKeys(this.isShiftOn);
       }
       unpressedKey = this.currentKeys.find((key) => key.keyData.code === event.code);
     } else {
+      if (event.type === 'mouseup' && detectShiftOnClick(event) && this.isShiftOn) {
+        this.isShiftOn = !this.isShiftOn;
+        this.#keyboard.refillKeys(this.isShiftOn);
+      }
+      // this.#keyboard.refillKeys('capsOff');
       unpressedKey = this.currentKeys.find(
         (key) => key.keyData.code === (
           event.target.dataset?.keyCode || event.target.parentNode.dataset.keyCode),
@@ -136,9 +153,11 @@ class App {
 
         switch (specialKeyCode) {
           case ('ShiftLeft'):
+            this.isShiftOn = true;
             this.updateCaps(keysToCaps);
             break;
           case ('ShiftRight'):
+            this.isShiftOn = true;
             this.updateCaps(keysToCaps);
             break;
           case ('ControlLeft'):
@@ -178,10 +197,12 @@ class App {
           this.#output.output.selectionStart = this.#output.processDelete(start, end);
           break;
         case ('ShiftLeft'):
-          this.#keyboard.refillKeys('capsOn');
+          this.isShiftOn = true;
+          this.#keyboard.refillKeys(true);
           break;
         case ('ShiftRight'):
-          this.#keyboard.refillKeys('capsOn');
+          this.isShiftOn = true;
+          this.#keyboard.refillKeys(true);
           break;
 
         default:
@@ -193,6 +214,8 @@ class App {
 
   updateCaps(keysToCapsLock) {
     keysToCapsLock.forEach((key) => {
+      key.playAudio();
+      key.key.classList.add('active');
       this.update(key.keyData.code, key.keyData[`${this.language}Caps`]);
     });
   }
@@ -200,7 +223,7 @@ class App {
   changeLanguage() {
     this.#keyboard.language = this.language;
     setLocalStorage('LANGUAGE', this.language);
-    this.#keyboard.refillKeys('language');
+    this.#keyboard.refillKeys(this.isShiftOn);
   }
 }
 
