@@ -1,0 +1,153 @@
+@use "sass:map";
+
+.key {
+  height: 52px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  overflow: hidden;
+  user-select: none;
+  transition: 0.1s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    bottom: 7px;
+    right: 7px;
+    border-radius: 7px;
+  }
+
+  & span {
+    @include font($key-font...);
+    position: relative;
+    margin-bottom: 3px;
+    margin-right: 4px;
+  }
+
+  &.key_1 {
+    width: 52px;
+
+    &.active {
+      transform: scale(0.95);
+    }
+  }
+
+  &.key_1-5 {
+    width: 81px;
+
+    &.active {
+      transform: scale(0.96);
+    }
+  }
+
+  &.key_2 {
+    width: 111px;
+
+    &.active {
+      transform: scale(0.97);
+    }
+  }
+
+  &.key_2-5 {
+    width: 139px;
+
+    &.active {
+      transform: scale(0.98);
+    }
+  }
+
+  &.key_space {
+    width: 372px;
+
+    &.active {
+      transform: scale(0.99);
+    }
+  }
+
+  &.key_arrow {
+    & .key__char {
+      display: none;
+    }
+
+    &::after {
+      content: url(./assets/images/arrow-up.svg);
+      z-index: 1;
+    }
+
+    &.key_arrow-left::after {
+      transform: rotate(-90deg);
+    }
+
+    &.key_arrow-down::after {
+      transform: rotate(180deg);
+    }
+
+    &.key_arrow-right::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &.key_default {
+    @include key-colors($key-default...);
+    color: map.get($key-font-colors, "dark");
+
+    &::before {
+      @include key-colors-before($key-default-pseudo...);
+    }
+  }
+
+  &.key_default-dark {
+    @include key-colors($key-default-dark...);
+    color: map.get($key-font-colors, "dark");
+
+    &::before {
+      @include key-colors-before($key-default-dark-pseudo...);
+    }
+  }
+
+  &.key_accent-mustard {
+    @include key-colors($key-accent-mustard...);
+    color: map.get($key-font-colors, "bright");
+
+    &::before {
+      @include key-colors-before($key-accent-mustard-pseudo...);
+    }
+  }
+
+  &.key_accent-corall {
+    @include key-colors($key-accent-corall...);
+    color: map.get($key-font-colors, "bright");
+
+    &::before {
+      @include key-colors-before($key-accent-corall-pseudo...);
+    }
+  }
+
+  &.key_accent-aquamarine {
+    @include key-colors($key-accent-aquamarine...);
+    color: map.get($key-font-colors, "bright");
+
+    &::before {
+      @include key-colors-before($key-accent-aquamarine-pseudo...);
+    }
+  }
+
+  &.active {
+    box-shadow:
+    0px 4px 4px rgba(0 0 0 / 25%),
+    0px 4px 4px rgba(0 0 0 / 25%),
+    0px 4px 4px rgba(0 0 0 / 25%),
+    0px 2px 0px 2px rgba(0 0 0 / 40%);
+
+    &::before {
+      box-shadow:
+      0px 4px 4px rgba(0 0 0 / 25%),
+      0px 0px 4px 5px rgba(0 0 0 / 15%),
+      inset 0px 0px 10px 25px rgba(0 0 0 / 20%);
+    }
+  }
+}

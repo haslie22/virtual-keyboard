@@ -1,0 +1,45 @@
+@mixin font(
+  $font-size,
+  $font-family,
+  $font-style: normal,
+  $font-weight: 400
+) {
+  font: {
+    family: $font-family;
+    style: $font-style;
+    weight: $font-weight;
+    size: $font-size;
+  }
+}
+
+@mixin key-colors(
+  $face-gradient-light,
+  $face-gradient-dark,
+  $face-box-shadow-bottom,
+  $face-box-shadow-border,
+  $face-box-shadow-overlay
+) {
+  background: linear-gradient(180deg, $face-gradient-light, $face-gradient-dark);
+  box-shadow: 
+    0 4px 4px 0 $face-box-shadow-bottom,
+    0 0 0 2px $face-box-shadow-border,
+    0 5px 25px 2px $face-box-shadow-overlay;
+}
+
+@mixin key-colors-before(
+  $top-gradient-light,
+  $top-gradient-dark,
+  $top-box-shadow-left,
+  $top-box-shadow-overall,
+  $top-border-left,
+  $top-border-bottom,
+  $top-border-top
+) {
+  background: linear-gradient(90deg, $top-gradient-dark, $top-gradient-light);
+  box-shadow:
+  0 4px 4px $top-box-shadow-left,
+  10px 5px 10px $top-box-shadow-overall;
+  border-left: 1px solid $top-border-left;
+  border-bottom: 1px solid $top-border-bottom;
+  border-top: 1px solid $top-border-top;
+}

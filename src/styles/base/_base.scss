@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  height: max(100vh, 800px);
+  min-width: 1050px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #5B5964 0%, #757185 100%);
+}
