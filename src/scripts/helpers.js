@@ -19,10 +19,10 @@ const detectShiftOnClick = (event) => {
     } else {
       isShift = false;
     }
-  } else if (event.target.parentNode.dataset) {
-    if (event.target.parentNode.dataset.keyCode === 'ShiftRight') {
+  } else if (event.target.closest('.key').dataset) {
+    if (event.target.closest('.key').dataset.keyCode === 'ShiftRight') {
       isShift = true;
-    } else if (event.target.parentNode.dataset.keyCode === 'ShiftLeft') {
+    } else if (event.target.closest('.key').dataset.keyCode === 'ShiftLeft') {
       isShift = true;
     } else {
       isShift = false;

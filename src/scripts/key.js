@@ -32,9 +32,8 @@ class Key {
 
   addListeners() {
     this.key.addEventListener('mousedown', () => {
-      console.log('mousedown works');
       this.key.classList.add('active');
-      this.playAudio();
+      // this.playAudio();
       this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);
     });
 
@@ -60,7 +59,11 @@ class Key {
 
   playAudio() {
     this.audio.currentTime = 0;
-    this.audio.play();
+    const promise = this.audio.play();
+
+    if (promise !== undefined) {
+      promise.then(() => this).catch(() => null);
+    }
   }
 }
 

@@ -29,10 +29,9 @@ class App {
     this.styleConfig = styleConfig;
     this.language = language;
 
-    this.isCapsOn = false;
     this.isShiftOn = false;
+    this.isCapsOn = false;
     this.platform = detectPlatform();
-    console.log(this.platform);
 
     this.app = createElement('div', 'app');
     container.append(this.app);
@@ -43,16 +42,18 @@ class App {
     this.currentKeys = [];
   }
 
+  get isUpperCase() {
+    return this.isCapsOn ? !this.isShiftOn : this.isShiftOn;
+  }
+
   addListeners() {
     document.addEventListener('keydown', (event) => {
-      console.log(event);
       event.preventDefault();
       this.#output.output.focus();
       this.triggerPressEvent(event);
     });
 
     document.addEventListener('keyup', (event) => {
-      console.log(event);
       if (this.currentKeys.length) {
         this.handleUnpressedKey(event);
       }
@@ -107,14 +108,14 @@ class App {
     }
 
     if (this.currentKeys.length === 1) {
-      this.currentKeys.forEach((pressedKey) => {
+      const pressedKey = this.currentKeys[0];
+      if (!['ShiftRight', 'ShiftLeft'].includes(pressedKey.keyData.code) || !this.isShiftOn) {
         pressedKey.playAudio();
         pressedKey.key.classList.add('active');
-        this.update(pressedKey.keyData.code, pressedKey.keyData[this.language]);
-      });
-    }
 
-    if (this.currentKeys.length > 1) {
+        this.update(pressedKey.keyData.code, pressedKey.keyData[this.language]);
+      }
+    } else {
       this.checkForShortcuts();
     }
   }
@@ -125,15 +126,17 @@ class App {
     if (event.type === 'keyup') {
       if (event.key === 'Shift') {
         this.isShiftOn = !this.isShiftOn;
-        this.#keyboard.refillKeys(this.isShiftOn);
+      } else if (event.key === 'CapsLock') {
+        this.isCapsOn = !this.isCapsOn;
       }
+      this.#keyboard.refillKeys(this.isUpperCaseƒ);
       unpressedKey = this.currentKeys.find((key) => key.keyData.code === event.code);
     } else {
       if (event.type === 'mouseup' && detectShiftOnClick(event) && this.isShiftOn) {
         this.isShiftOn = !this.isShiftOn;
         this.#keyboard.refillKeys(this.isShiftOn);
       }
-      // this.#keyboard.refillKeys('capsOff');
+
       unpressedKey = this.currentKeys.find(
         (key) => key.keyData.code === (
           event.target.dataset?.keyCode || event.target.parentNode.dataset.keyCode),
@@ -153,12 +156,8 @@ class App {
 
         switch (specialKeyCode) {
           case ('ShiftLeft'):
-            this.isShiftOn = true;
-            this.updateCaps(keysToCaps);
-            break;
           case ('ShiftRight'):
             this.isShiftOn = true;
-            this.updateCaps(keysToCaps);
             break;
           case ('ControlLeft'):
             if (keysToCaps.filter((key) => key.keyData.code === 'AltLeft').length) {
@@ -166,20 +165,36 @@ class App {
               this.changeLanguage();
             }
             break;
+          case ('CapsLock'):
+            this.isCapsOn = true;
+            break;
           default:
-            return this;
         }
       }
-      return this;
     });
+
+    this.currentKeys.forEach((currentKey) => {
+      if (!this.specialKeys.includes(currentKey.keyData.code)) {
+        this.update(currentKey.keyData.code);
+      }
+    });
+    return this;
   }
 
-  update(keyCode, char) {
+  getChar(keyCode) {
+    return this.config.get(keyCode)[`${this.language}${this.isUpperCase ? 'Caps' : ''}`];
+  }
+
+  update(keyCode) {
     const start = this.#output.output.selectionStart;
     const end = this.#output.output.selectionEnd;
 
     if (this.config.get(keyCode)?.input) {
-      this.#output.output.selectionStart = this.#output.setContent(char, start, end);
+      this.#output.output.selectionStart = this.#output.setContent(
+        this.getChar(keyCode),
+        start,
+        end,
+      );
     }
 
     if (!this.config.get(keyCode)?.input) {
@@ -196,33 +211,41 @@ class App {
         case ('Delete'):
           this.#output.output.selectionStart = this.#output.processDelete(start, end);
           break;
+        case ('ShiftRight'):
         case ('ShiftLeft'):
           this.isShiftOn = true;
           this.#keyboard.refillKeys(true);
           break;
-        case ('ShiftRight'):
-          this.isShiftOn = true;
-          this.#keyboard.refillKeys(true);
-          break;
+          // case ('CapsLock'):
+          //   this.isShiftOn = true;
+          //   this.#keyboard.refillKeys(true);
+          //   break;
 
         default:
-          return this;
       }
     }
     return this;
   }
 
-  updateCaps(keysToCapsLock) {
-    keysToCapsLock.forEach((key) => {
-      key.playAudio();
-      key.key.classList.add('active');
-      this.update(key.keyData.code, key.keyData[`${this.language}Caps`]);
-    });
-  }
+  // updateCaps(keysToCapsLock) {
+  //   keysToCapsLock.forEach((key) => {
+  //     this.update(key.keyData.code, key.keyData[`${this.language}Caps`]);
+  //   });
+  // }
 
   changeLanguage() {
     this.#keyboard.language = this.language;
     setLocalStorage('LANGUAGE', this.language);
+    this.#keyboard.refillKeys(this.isShiftOn);
+  }
+
+  turnOnCapsLock() {
+    this.isShiftOn = true;
+    this.#keyboard.refillKeys(this.isShiftOn);
+  }
+
+  turnOffCapsLock() {
+    this.isShiftOn = false;
     this.#keyboard.refillKeys(this.isShiftOn);
   }
 }
