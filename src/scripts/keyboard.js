@@ -75,5 +75,3 @@ class Keyboard {
 }
 
 export default Keyboard;
-
-// TODO: fix sound and animation on Shift

@@ -19,7 +19,7 @@ const detectShiftOnClick = (event) => {
     } else {
       isShift = false;
     }
-  } else if (event.target.closest('.key').dataset.keyCode) {
+  } else if (event.target.closest('.key') && event.target.closest('.key').dataset.keyCode) {
     if (event.target.closest('.key').dataset.keyCode === 'ShiftRight') {
       isShift = true;
     } else if (event.target.closest('.key').dataset.keyCode === 'ShiftLeft') {
@@ -31,6 +31,26 @@ const detectShiftOnClick = (event) => {
     isShift = false;
   }
   return isShift;
+};
+
+const detectCapsLockOnClick = (event) => {
+  let isCapsLock = false;
+  if (event.target.dataset.keyCode) {
+    if (event.target.dataset.keyCode === 'CapsLock') {
+      isCapsLock = true;
+    } else {
+      isCapsLock = false;
+    }
+  } else if (event.target.closest('.key') && event.target.closest('.key').dataset.keyCode) {
+    if (event.target.closest('.key').dataset.keyCode === 'CapsLock') {
+      isCapsLock = true;
+    } else {
+      isCapsLock = false;
+    }
+  } else {
+    isCapsLock = false;
+  }
+  return isCapsLock;
 };
 
 const detectPlatform = () => {
@@ -46,5 +66,10 @@ const detectPlatform = () => {
 const getLocalStorage = (key) => localStorage.getItem(key);
 
 export {
-  createElement, setLocalStorage, getLocalStorage, detectShiftOnClick, detectPlatform,
+  createElement,
+  setLocalStorage,
+  getLocalStorage,
+  detectShiftOnClick,
+  detectCapsLockOnClick,
+  detectPlatform,
 };

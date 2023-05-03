@@ -33,16 +33,11 @@ class Key {
   addListeners() {
     this.key.addEventListener('mousedown', () => {
       this.key.classList.add('active');
-      // this.playAudio();
       this.triggerClickEvent(this.keyData.en, this.key.dataset.keyCode);
     });
 
     this.key.addEventListener('mouseup', () => {
       this.key.dispatchEvent(new KeyboardEvent('keyup'));
-    });
-
-    this.key.addEventListener('mouseleave', () => {
-      this.key.classList.remove('active');
     });
   }
 
