@@ -29,9 +29,12 @@ class App {
     this.styleConfig = styleConfig;
     this.language = language;
 
+    this.platform = detectPlatform();
+
     this.isShiftOn = false;
     this.isCapsOn = false;
-    this.platform = detectPlatform();
+    this.ignoreNextKeyUp = false;
+    this.ignoreNextKeyDown = true;
 
     this.app = createElement('div', 'app');
     container.append(this.app);
@@ -50,11 +53,23 @@ class App {
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
       this.#output.output.focus();
+      if ((event.key === 'CapsLock')) {
+        this.ignoreNextKeyDown = !this.ignoreNextKeyDown;
+
+        if (this.ignoreNextKeyDown && this.platform === 'Windows') return;
+      }
+
       this.triggerPressEvent(event);
     });
 
     document.addEventListener('keyup', (event) => {
-      if (this.currentKeys.length || event.key === 'CapsLock') {
+      if (this.currentKeys.length || (event.key === 'CapsLock')) {
+        if (((event.key === 'CapsLock'))) {
+          this.ignoreNextKeyUp = !this.ignoreNextKeyUp;
+
+          if (this.ignoreNextKeyUp && this.platform === 'Windows') return;
+        }
+
         this.handleUnpressedKey(event);
       }
     });
