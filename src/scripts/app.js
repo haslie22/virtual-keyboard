@@ -70,6 +70,15 @@ class App {
       }
     });
 
+    this.#keyboard.keyboard.addEventListener('mouseout', (event) => {
+      if (event.buttons === 0) {
+        return;
+      }
+      const upEvent = new MouseEvent('mouseup');
+      Object.defineProperty(upEvent, 'target', { writable: false, value: event.target });
+      this.#keyboard.keyboard.dispatchEvent(upEvent);
+    });
+
     this.app.addEventListener('keyClicked', (event) => {
       this.handleActiveKeys(event);
     });
@@ -107,17 +116,18 @@ class App {
       this.currentKeys.push(activeKey);
     }
 
-    if (this.currentKeys.length === 1) {
-      const pressedKey = this.currentKeys[0];
-      if (!['ShiftRight', 'ShiftLeft'].includes(pressedKey.keyData.code) || !this.isShiftOn) {
-        pressedKey.playAudio();
-        pressedKey.key.classList.add('active');
+    // if (this.currentKeys.length === 1) {
+    //   const pressedKey = this.currentKeys[0];
+    //   if (!['ShiftRight', 'ShiftLeft'].includes(pressedKey.keyData.code) || !this.isShiftOn) {
+    //     pressedKey.playAudio();
+    //     pressedKey.key.classList.add('active');
 
-        this.update(pressedKey.keyData.code, pressedKey.keyData[this.language]);
-      }
-    } else {
-      this.checkForShortcuts();
-    }
+    //     this.update(pressedKey.keyData.code, pressedKey.keyData[this.language]);
+    //   }
+    // } else {
+    this.checkForShortcuts();
+
+    // }
   }
 
   handleUnpressedKey(event) {
@@ -125,11 +135,11 @@ class App {
 
     if (event.type === 'keyup') {
       if (event.key === 'Shift') {
-        this.isShiftOn = !this.isShiftOn;
+        this.isShiftOn = false;
       } else if (event.key === 'CapsLock') {
         this.isCapsOn = !this.isCapsOn;
       }
-      this.#keyboard.refillKeys(this.isUpperCaseƒ);
+
       unpressedKey = this.currentKeys.find((key) => key.keyData.code === event.code);
     } else {
       if (event.type === 'mouseup' && detectShiftOnClick(event) && this.isShiftOn) {
@@ -145,10 +155,12 @@ class App {
     if (unpressedKey) {
       unpressedKey.key.classList.remove('active');
       this.currentKeys.splice(this.currentKeys.indexOf(unpressedKey), 1);
+      this.#keyboard.refillKeys(this.isUpperCase);
     }
   }
 
   checkForShortcuts() {
+    const oldShiftState = this.isShiftOn;
     this.currentKeys.forEach((currentKey) => {
       if (this.specialKeys.includes(currentKey.keyData.code)) {
         const specialKeyCode = currentKey.keyData.code;
@@ -171,13 +183,23 @@ class App {
           default:
         }
       }
-    });
 
-    this.currentKeys.forEach((currentKey) => {
-      if (!this.specialKeys.includes(currentKey.keyData.code)) {
-        this.update(currentKey.keyData.code);
+      if (!['ShiftRight', 'ShiftLeft'].includes(currentKey.keyData.code) || !oldShiftState || !this.isShiftOn) {
+        currentKey.playAudio();
+        currentKey.key.classList.add('active');
+        this.#keyboard.refillKeys(this.isUpperCase);
       }
     });
+
+    const keys = this.currentKeys.filter(
+      (currentKey) => !this.specialKeys.includes(currentKey.keyData.code),
+    );
+    if (keys.length > 0) this.update(keys[keys.length - 1].keyData.code);
+    // .forEach((currentKey) => {
+    //   if (!this.specialKeys.includes(currentKey.keyData.code)) {
+    //     this.update(currentKey.keyData.code);
+    //   }
+    // });
     return this;
   }
 

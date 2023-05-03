@@ -11,7 +11,7 @@ const setLocalStorage = (key, value) => {
 
 const detectShiftOnClick = (event) => {
   let isShift = false;
-  if (event.target.dataset) {
+  if (event.target.dataset.keyCode) {
     if (event.target.dataset.keyCode === 'ShiftRight') {
       isShift = true;
     } else if (event.target.dataset.keyCode === 'ShiftLeft') {
@@ -19,7 +19,7 @@ const detectShiftOnClick = (event) => {
     } else {
       isShift = false;
     }
-  } else if (event.target.closest('.key').dataset) {
+  } else if (event.target.closest('.key').dataset.keyCode) {
     if (event.target.closest('.key').dataset.keyCode === 'ShiftRight') {
       isShift = true;
     } else if (event.target.closest('.key').dataset.keyCode === 'ShiftLeft') {
@@ -30,7 +30,6 @@ const detectShiftOnClick = (event) => {
   } else {
     isShift = false;
   }
-
   return isShift;
 };
 
